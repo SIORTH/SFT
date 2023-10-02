@@ -364,7 +364,9 @@ body {
       top: 80px;
     }
   }
-  
+  .section-title h2::after {
+    display: hidden;
+  }
   .section-title h2 {
     font-size: 14px;
     font-weight: 500;
