@@ -9,7 +9,7 @@ body {
   body::before {
     content: "";
     position: fixed;
-    background: #040404 url("/assets/img/bg.jpg") top right no-repeat;
+    background: #fafafa url("/assets/img/bg.svg") top right no-repeat;
     background-size: cover;
     left: 0;
     right: 0;
@@ -25,7 +25,7 @@ body {
   }
   
   a {
-    color: #18d26e;
+    color: #C42126;
     text-decoration: none;
   }
   
@@ -71,7 +71,7 @@ body {
   
   #header h1 a,
   #header h1 a:hover {
-    color: #fff;
+    color: #26285F;
     line-height: 1;
     display: inline-block;
   }
@@ -79,12 +79,12 @@ body {
   #header h2 {
     font-size: 24px;
     margin-top: 20px;
-    color: rgba(255, 255, 255, 0.8);
+    color: #000;
   }
   
   #header h2 span {
-    color: #fff;
-    border-bottom: 2px solid #18d26e;
+    color: #000;
+    border-bottom: 2px solid #C42126;
     padding-bottom: 6px;
   }
   
@@ -104,7 +104,7 @@ body {
     justify-content: center;
     align-items: center;
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: #000;
     line-height: 1;
     margin-right: 8px;
     border-radius: 50%;
@@ -113,7 +113,7 @@ body {
   }
   
   #header .social-links a:hover {
-    background: #18d26e;
+    background: #7D7D7D;
   }
   
   @media (max-width: 992px) {
@@ -144,7 +144,7 @@ body {
     left: 0;
     top: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: #7d7d7da8;
   }
   
   #header.header-top .social-links,
@@ -217,7 +217,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
+    color: #000;
     white-space: nowrap;
     transition: 0.3s;
   }
@@ -236,7 +236,7 @@ body {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: #18d26e;
+    background-color: #C42126;
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -253,7 +253,7 @@ body {
   .navbar .active,
   .navbar .active:focus,
   .navbar li:hover>a {
-    color: #fff;
+    color: #C42126;
   }
   
   /**
@@ -349,7 +349,7 @@ body {
   }
   
   section .container {
-    background: rgba(0, 0, 0, 0.9);
+    background: #999999;
     padding: 30px;
   }
   
@@ -371,16 +371,14 @@ body {
     margin: 0 0 20px 0;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #aaaaaa;
+    color: #000;
     font-family: "Poppins", sans-serif;
   }
   
   .section-title h2::after {
-    content: "";
-    width: 120px;
-    height: 1px;
-    display: inline-block;
-    background: #4ceb95;
+    content: "| SIFORTECH | 2024";
+    width: 150px;
+    color: #E81E25;
     margin: 4px 10px;
   }
   
@@ -400,7 +398,7 @@ body {
   .about-me .content h3 {
     font-weight: 700;
     font-size: 26px;
-    color: #18d26e;
+    color: #C42126;
   }
   
   .about-me .content ul {
@@ -421,7 +419,7 @@ body {
   .about-me .content ul i {
     font-size: 16px;
     margin-right: 5px;
-    color: #18d26e;
+    color: #C42126;
     line-height: 0;
   }
   
@@ -452,7 +450,7 @@ body {
     font-size: 24px;
     background: rgba(255, 255, 255, 0.1);
     padding: 12px;
-    color: #18d26e;
+    color: #C42126;
     border-radius: 50px;
     line-height: 0;
   }
@@ -504,7 +502,7 @@ body {
     width: 1px;
     height: 10px;
     transition: 0.9s;
-    background-color: #18d26e;
+    background-color: #C42126;
   }
   
   /*--------------------------------------------------------------
@@ -514,7 +512,7 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgb(38 40 95 / 53%);
     transition: ease-in-out 0.3s;
   }
   
@@ -615,7 +613,7 @@ body {
   }
   
   .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #18d26e;
+    background-color: #C42126;
   }
   
   /*--------------------------------------------------------------
@@ -642,7 +640,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     font-family: "Poppins", sans-serif;
-    color: #18d26e;
+    color: #C42126;
     margin-bottom: 10px;
   }
   
@@ -675,8 +673,8 @@ body {
     border-radius: 50px;
     left: -9px;
     top: 0;
-    background: #18d26e;
-    border: 2px solid #18d26e;
+    background: #C42126;
+    border: 2px solid #C42126;
   }
   
   /*--------------------------------------------------------------
@@ -684,7 +682,7 @@ body {
   --------------------------------------------------------------*/
   .services .icon-box {
     text-align: center;
-    background: rgba(204, 204, 204, 0.1);
+    background: rgb(38 40 95 / 53%);
     padding: 80px 20px;
     transition: all ease-in-out 0.3s;
   }
@@ -693,7 +691,7 @@ body {
     margin: 0 auto;
     width: 64px;
     height: 64px;
-    background: #18d26e;
+    background: #C42126;
     border-radius: 5px;
     transition: all 0.3s ease-out 0s;
     display: flex;
@@ -738,8 +736,8 @@ body {
   }
   
   .services .icon-box:hover {
-    background: #18d26e;
-    border-color: #18d26e;
+    background: #C42126;
+    border-color: #C42126;
   }
   
   .services .icon-box:hover .icon {
@@ -747,7 +745,7 @@ body {
   }
   
   .services .icon-box:hover .icon i {
-    color: #18d26e;
+    color: #C42126;
   }
   
   .services .icon-box:hover .icon::before {
@@ -792,7 +790,7 @@ body {
   
   .portfolio #portfolio-flters li:hover,
   .portfolio #portfolio-flters li.filter-active {
-    background: #18d26e;
+    background: #C42126;
   }
   
   .portfolio #portfolio-flters li:last-child {
@@ -986,7 +984,7 @@ body {
   }
   
   .portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #18d26e;
+    background-color: #C42126;
   }
   
   /*--------------------------------------------------------------
@@ -1001,7 +999,7 @@ body {
   
   .contact .info-box i.bx {
     font-size: 24px;
-    color: #18d26e;
+    color: #C42126;
     border-radius: 50%;
     padding: 14px;
     float: left;
@@ -1038,7 +1036,7 @@ body {
   }
   
   .contact .info-box .social-links a:hover {
-    color: #18d26e;
+    color: #C42126;
   }
   
   .contact .php-email-form {
@@ -1062,7 +1060,7 @@ body {
   .contact .php-email-form .sent-message {
     display: none;
     background: rgba(255, 255, 255, 0.08);
-    background: #18d26e;
+    background: #C42126;
     text-align: center;
     padding: 15px;
     font-weight: 600;
@@ -1082,7 +1080,7 @@ body {
     width: 24px;
     height: 24px;
     margin: 0 10px -6px 0;
-    border: 3px solid #18d26e;
+    border: 3px solid #C42126;
     border-top-color: #eee;
     animation: animate-loading 1s linear infinite;
   }
@@ -1124,7 +1122,7 @@ body {
   }
   
   .contact .php-email-form button[type=submit] {
-    background: #18d26e;
+    background: #C42126;
     border: 0;
     padding: 10px 30px;
     color: #fff;
