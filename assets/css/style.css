@@ -364,9 +364,7 @@ body {
       top: 80px;
     }
   }
-  .section-title h2::after {
-    display: hidden;
-  }
+  
   .section-title h2 {
     font-size: 14px;
     font-weight: 500;
@@ -380,8 +378,6 @@ body {
   }
   
   .section-title h2::after {
-    content: "| SIFORTECH | 2024";
-    width: 150px;
     color: #E81E25;
     margin: 4px 10px;
   }
