@@ -175,7 +175,9 @@ body {
     #header.header-top {
       height: 60px;
     }
-  
+    body::before {
+      background: #fafafa;
+    }  
     #header.header-top h1 {
       font-size: 26px;
     }
