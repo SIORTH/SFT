@@ -16,7 +16,7 @@ app.post('/send-email', (req, res) => {
   // Konten email
   const emailContent = {
     from: email,
-    to: 'fajars.tech@gmail.com', // Ganti dengan alamat email penerima yang sesuai
+    to: '', // Ganti dengan alamat email penerima yang sesuai
     subject: subject,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
   };
