@@ -432,6 +432,7 @@ body {
   
   .about-me .content p:last-child {
     margin-bottom: 0;
+    text-align: justify;
   }
   
   /*--------------------------------------------------------------
