@@ -201,6 +201,28 @@
           box-shadow: 0 8px 20px #bb2e39cc;
         }
 
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          #home {
+            /* Adjust gradient intensity or use a simpler background for tablets */
+            background: linear-gradient(135deg, #E63946bb, #0077B6bb),
+              ;
+            /* You could also consider a different background image optimized for smaller screens */
+            /* background: linear-gradient(135deg, #E63946bb, #0077B6bb),
+                  url('/assets/hero-bg-tablet.png') no-repeat center center / cover; */
+          }
+        }
+
+        @media (max-width: 576px) {
+          #home {
+            /* Further adjust gradient or use a mobile-specific background */
+            background: linear-gradient(135deg, #E63946aa, #0077B6aa),
+              ;
+            /* Or even a solid color with the gradient overlay if the image is too heavy for mobile */
+            /* background: linear-gradient(135deg, #E63946aa, #0077B6aa), #333 no-repeat center center / cover; */
+          }
+        }
+
         /* About Section */
         #about {
           max-width: 900px;
