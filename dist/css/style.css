@@ -107,19 +107,22 @@
           font-weight: 700;
         }
 
+        .navbar-nav .nav-link {
+          position: relative;
+          /* diperlukan agar ::after menempel */
+        }
+
         .navbar-nav .nav-link:hover::after,
         .navbar-nav .nav-link.active::after {
           content: "";
           position: absolute;
-          left: 10%;
-          right: 10%;
+          left: 0;
+          right: 0;
           bottom: 0;
           height: 3px;
           background: #E63946;
           border-radius: 5px;
           box-shadow: 0 0 8px #E63946aa;
-          transition: width 0.3s ease;
-          /* Seharusnya left dan right atau width */
         }
 
         .dark-toggle {
@@ -138,18 +141,6 @@
         }
 
 
-        /* Responsive Navbar toggler */
-        .navbar-toggler {
-          border-color: #E63946;
-        }
-
-        .navbar-toggler-icon .fa-bars {
-          /* Target ikon FA di dalam toggler */
-          color: #E63946 !important;
-          /* Pastikan warna ikon utama */
-        }
-
-
         /* Hero Section (Home) */
         #home {
           background: linear-gradient(135deg, #E63946cc, #0077B6cc),
@@ -163,6 +154,17 @@
           text-align: center;
           height: 100vh;
           padding: 0 1rem;
+        }
+
+        #home {
+          overflow: hidden;
+          transition: height 0.5s ease;
+        }
+
+        #home.shrinked {
+          height: 0 !important;
+          padding: 0 !important;
+          opacity: 0.5;
         }
 
         #home h1 {
@@ -180,6 +182,7 @@
           text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
           /* Lebih soft shadow */
         }
+
 
         #home .btn-cta {
           font-weight: 700;
@@ -201,27 +204,26 @@
           box-shadow: 0 8px 20px #bb2e39cc;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
           #home {
-            /* Adjust gradient intensity or use a simpler background for tablets */
-            background: linear-gradient(135deg, #E63946bb, #0077B6bb),
-              ;
-            /* You could also consider a different background image optimized for smaller screens */
-            /* background: linear-gradient(135deg, #E63946bb, #0077B6bb),
-                  url('/assets/hero-bg-tablet.png') no-repeat center center / cover; */
+            background-image: linear-gradient(135deg, #E63946bb, #0077B6bb);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
           }
+
         }
 
         @media (max-width: 576px) {
           #home {
-            /* Further adjust gradient or use a mobile-specific background */
-            background: linear-gradient(135deg, #E63946aa, #0077B6aa),
-              ;
-            /* Or even a solid color with the gradient overlay if the image is too heavy for mobile */
-            /* background: linear-gradient(135deg, #E63946aa, #0077B6aa), #333 no-repeat center center / cover; */
+            background-image: linear-gradient(135deg, #E63946aa, #0077B6aa);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
           }
+
         }
+
 
         /* About Section */
         #about {
@@ -349,6 +351,13 @@
           color: #333;
           /* Default, akan di-override oleh dark mode */
         }
+
+        @media (max-width: 768px) {
+          #about .profile-pic {
+            margin: 0 auto;
+          }
+        }
+
 
         /* Portfolio Section */
         #portfolio {
@@ -752,6 +761,18 @@
         body.dark-mode .navbar-brand {
           color: #e0e0e0;
           /* atau warna terang lain yang kontras di latar gelap */
+        }
+
+        .navbar-toggler i {
+          color: #E63946;
+          /* Warna saat default */
+          font-size: 1.5rem;
+          transition: color 0.3s ease;
+        }
+
+        .navbar-toggler[aria-expanded="true"] i {
+          color: #0077B6;
+          /* Warna saat dibuka */
         }
 
         body.dark-mode .navbar-nav .nav-link {
