@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'desain-logo-tech',
             title: 'Admin Fleksibel',
-            tags: ['design', 'branding'],
+            tags: ['document', 'typing'],
             thumb: '/assets/content/admin-fleksibel.png',
             fullImage: '/assets/content/admin-fleksibel.png',
             desc: 'Admin Fleksibel untuk pengelolaan dokumen, entri data, dan dukungan administratif. Tersedia secara onsite maupun remote sesuai kebutuhan proyek, dengan fokus pada efisiensi dan ketepatan data.'
