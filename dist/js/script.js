@@ -441,21 +441,82 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-});
+    // Update home section shrink based on hash
+    function updateHomeSectionShrink() {
+        const homeSection = document.getElementById('home');
+        if (!homeSection) return;
 
-function updateHomeSectionShrink() {
-    const homeSection = document.getElementById('home');
-    if (!homeSection) return;
+        // ambil hash tanpa #
+        const hash = window.location.hash.slice(1);
 
-    // ambil hash tanpa #
-    const hash = window.location.hash.slice(1);
-
-    if (hash && hash !== 'home') {
-        homeSection.classList.add('shrinked');
-    } else {
-        homeSection.classList.remove('shrinked');
+        if (hash && hash !== 'home') {
+            homeSection.classList.add('shrinked');
+        } else {
+            homeSection.classList.remove('shrinked');
+        }
     }
+    // Call on initial load and whenever section changes
+    updateHomeSectionShrink();
+
+    // Patch setActiveSection to also update home shrink
+    const originalSetActiveSection = setActiveSection;
+    setActiveSection = function (targetId, isInitialLoad = false) {
+        originalSetActiveSection(targetId, isInitialLoad);
+        updateHomeSectionShrink();
+    };
+
+}); // End of DOMContentLoaded
+
+function showLoadingOverlay(duration = 1500) {
+    // Cek jika overlay sudah ada
+    if (document.getElementById('customLoadingOverlay')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'customLoadingOverlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgb(255, 255, 255)';
+    overlay.style.zIndex = 9999;
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.innerHTML = `
+        <div style="text-align:center;">
+            <div class="spinner-border text-primary" style="width:3rem;height:3rem;" role="status"></div>
+            <div style="margin-top:1rem;font-size:1.1rem;color:#333;">Memuat...</div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+    setTimeout(() => {
+        overlay.remove();
+    }, duration);
 }
+
+// Patch nav button click to show loading overlay before reload
+['homeBtn', 'aboutBtn', 'protfolionBtn', 'servicesBtn', 'contactBtn', 'btn-cta'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            showLoadingOverlay(1500);
+            const hashMap = {
+                homeBtn: '#home',
+                aboutBtn: '#about',
+                protfolionBtn: '#portfolio',
+                servicesBtn: '#services',
+                contactBtn: '#contact',
+                'btn-cta': '#contact'
+            };
+            const hash = hashMap[id] || '#home';
+            setTimeout(() => {
+                window.location.href = `${window.location.origin}${window.location.pathname}${hash}`;
+                window.location.reload();
+            }, 1500);
+        });
+    }
+});
 
 // Nav Button
 document.getElementById('homeBtn').addEventListener('click', () => {
@@ -488,9 +549,6 @@ document.getElementById('btn-cta').addEventListener('click', function (e) {
     window.location.href = `${window.location.origin}${window.location.pathname}#contact`;
     window.location.reload();
 });
-
-// Call on initial load and whenever section changes
-updateHomeSectionShrink();
 
 // Patch setActiveSection to also update home shrink
 const originalSetActiveSection = setActiveSection;
