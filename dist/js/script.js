@@ -443,26 +443,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-const homeSection = document.getElementById('home');
+function updateHomeSectionShrink() {
+    const homeSection = document.getElementById('home');
+    if (!homeSection) return;
 
-if (homeSection) {
-    if (targetId === 'home') {
-        homeSection.classList.remove('shrinked');
-        homeSection.style.height = homeSection.scrollHeight + 'px';
+    // ambil hash tanpa #
+    const hash = window.location.hash.slice(1);
 
-        setTimeout(() => {
-            homeSection.style.height = '100vh'; // kembali ke default setelah animasi
-        }, 500); // waktu harus sama dgn CSS transition
-    } else {
-        homeSection.style.height = homeSection.scrollHeight + 'px';
-
-        // trigger reflow
-        void homeSection.offsetWidth;
-
-        homeSection.style.height = '0px';
+    if (hash && hash !== 'home') {
         homeSection.classList.add('shrinked');
+    } else {
+        homeSection.classList.remove('shrinked');
     }
 }
+
+// Nav Button
+document.getElementById('homeBtn').addEventListener('click', () => {
+    window.location.href = `${window.location.origin}${window.location.pathname}#home`;
+    window.location.reload(); // optional, kalau pengen jamin reload penuh
+});
+document.getElementById('aboutBtn').addEventListener('click', () => {
+    window.location.href = `${window.location.origin}${window.location.pathname}#about`;
+    window.location.reload();
+});
+document.getElementById('protfolionBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = `${window.location.origin}${window.location.pathname}#portfolio`;
+    window.location.reload();
+});
+
+document.getElementById('servicesBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = `${window.location.origin}${window.location.pathname}#services`;
+    window.location.reload();
+});
+
+document.getElementById('contactBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = `${window.location.origin}${window.location.pathname}#contact`;
+    window.location.reload();
+});
+document.getElementById('btn-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.location.href = `${window.location.origin}${window.location.pathname}#contact`;
+    window.location.reload();
+});
+
+// Call on initial load and whenever section changes
+updateHomeSectionShrink();
+
+// Patch setActiveSection to also update home shrink
+const originalSetActiveSection = setActiveSection;
+setActiveSection = function (targetId, isInitialLoad = false) {
+    originalSetActiveSection(targetId, isInitialLoad);
+    updateHomeSectionShrink();
+};
 
 const navbarToggler = document.querySelector('.navbar-toggler');
 const togglerIcon = navbarToggler?.querySelector('i');
