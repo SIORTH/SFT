@@ -312,7 +312,7 @@ img {
     background: var(--border-color);
     margin: 6px 0;
 }
-nav .sidenav-trigger{
+nav-wrapper nav .sidenav-trigger{
    color:var(--text-primary) !important;
 }
 
