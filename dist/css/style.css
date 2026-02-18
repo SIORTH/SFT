@@ -1792,6 +1792,7 @@ body.services-error #layanan-error {
         height: 40px;
         margin-right: -4px;
         flex-shrink: 0;
+        color:var(--text-primary);
     }
 
     /* ---- Hero Section ---- */
