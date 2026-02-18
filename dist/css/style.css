@@ -171,7 +171,7 @@ img {
     right: 0;
     z-index: 1000;
     height: var(--nav-height);
-    background: var(--text-primary);
+    background: var(--bg-secondary);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -303,17 +303,14 @@ img {
     gap: 14px;
 }
 
-.sidenav li i {
-    color: var(--text-secondary);
+.sidenav li a i {
+    color: var(--text-primary) !important;
     margin: 0 !important;
 }
 
 .sidenav .divider {
     background: var(--border-color);
     margin: 6px 0;
-}
-.sidenav-trigger nav a{
-   color:var(--text-primary) !important;
 }
 
 /* ============================================
