@@ -273,7 +273,7 @@ img {
 
 /* Sidenav trigger - hamburger menu */
 .sidenav-trigger {
-    color: var(--text-primary) !important;
+    color: #505050 !important;
     display: flex;
     align-items: center;
     justify-content: center;
