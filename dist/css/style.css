@@ -171,7 +171,7 @@ img {
     right: 0;
     z-index: 1000;
     height: var(--nav-height);
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--text-primary);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
