@@ -171,7 +171,7 @@ img {
     right: 0;
     z-index: 1000;
     height: var(--nav-height);
-    background: var(--bg-secondary);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -271,50 +271,282 @@ img {
     transform: rotate(180deg);
 }
 
-/* Sidenav */
+/* Sidenav trigger - hamburger menu */
+.sidenav-trigger {
+    color: var(--text-primary) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.sidenav-trigger i {
+    color: var(--text-primary) !important;
+    font-size: 24px;
+}
+
+[data-theme="dark"] .sidenav-trigger i {
+    color: var(--text-primary) !important;
+}
+
+/* Sidenav - Modern Redesign */
 .sidenav {
     background: var(--bg-elevated);
     width: 280px;
-}
-
-.sidenav-header {
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.user-view {
-    padding: 32px 24px 16px !important;
+[data-theme="dark"] .sidenav {
+    background: var(--bg-elevated);
 }
 
-.sidenav-bg {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+/* Brand Header */
+.sidenav-brand {
+    padding: 20px 20px 16px;
 }
 
-.sidenav-logo {
-    font-size: 48px !important;
-    color: #fff;
+.sidenav-brand a {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    padding: 0 !important;
 }
 
-.sidenav li a {
-    color: var(--text-primary);
-    font-weight: 500;
-    padding: 14px 24px !important;
+.sidenav-brand-icon {
     display: flex;
     align-items: center;
-    gap: 14px;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
 }
 
-.sidenav li a i {
+.sidenav-brand-icon img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.sidenav-brand-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+/* Divider */
+.sidenav-divider {
+    padding: 0 20px;
+}
+
+.sidenav-divider .divider {
+    background: var(--border-color);
+    height: 1px;
+    margin: 8px 0;
+}
+
+/* Navigation Items */
+.sidenav-nav {
+    margin: 2px 12px;
+}
+
+.sidenav-nav a {
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px !important;
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.sidenav-nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    transition: height var(--transition);
+}
+
+.sidenav-nav a:hover {
+    background: var(--bg-tertiary);
     color: var(--text-primary) !important;
+}
+
+.sidenav-nav a:hover::before {
+    height: 24px;
+}
+
+.sidenav-nav a.active {
+    background: var(--primary-transparent);
+    color: var(--primary-color) !important;
+}
+
+.sidenav-nav a.active::before {
+    height: 24px;
+}
+
+/* Nav Icon */
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.nav-icon i {
+    font-size: 22px;
+    color: inherit !important;
     margin: 0 !important;
 }
 
-.sidenav .divider {
-    background: var(--border-color);
-    margin: 6px 0;
+/* Nav Label */
+.nav-label {
+    flex: 1;
 }
 
-.sidenav nav a {
-   color: var(--text-primary) !important;
+/* Footer Section (Theme Toggle) */
+.sidenav-footer {
+    margin-top: auto;
+    padding: 12px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.theme-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+}
+
+.theme-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.theme-toggle-label i {
+    font-size: 20px;
+    color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 28px;
+    transition: all var(--transition);
+    overflow: hidden;
+}
+
+/* Slider icons container */
+.slider-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.slider-icon i {
+    font-size: 14px;
+    color: #fff;
+}
+
+/* Moon icon (dark mode - shown when unchecked) */
+.moon-icon {
+    left: 4px;
+    opacity: 1;
+}
+
+/* Sun icon (light mode - shown when checked) */
+.sun-icon {
+    right: 4px;
+    opacity: 0;
+}
+
+/* The sliding circle - completely hidden, no white box */
+.theme-slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border-radius: 50%;
+    transition: transform var(--transition);
+    box-shadow: none;
+    z-index: 2;
+}
+
+/* Checked state (dark mode on) */
+.theme-switch input:checked + .theme-slider {
+    background: transparent;
+    border-color: var(--primary-color);
+}
+
+.theme-switch input:checked + .theme-slider::before {
+    transform: translateY(-50%) translateX(24px);
+    background: transparent;
+}
+
+/* Icon visibility transitions */
+.theme-switch input:checked + .theme-slider .moon-icon {
+    opacity: 0;
+}
+
+.theme-switch input:checked + .theme-slider .sun-icon {
+    opacity: 1;
+}
+
+/* Focus state */
+.theme-switch input:focus + .theme-slider {
+    box-shadow: 0 0 0 2px var(--primary-transparent);
 }
 
 /* ============================================
