@@ -2255,6 +2255,7 @@ body.services-error #layanan-error {
     .nav-hamburger {
         width: 38px;
         height: 38px;
+       color:var(--text-primary);
     }
 }
 
