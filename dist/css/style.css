@@ -303,7 +303,7 @@ img {
     gap: 14px;
 }
 
-.sidenav li a i {
+.sidenav li i {
     color: var(--text-secondary);
     margin: 0 !important;
 }
@@ -312,7 +312,7 @@ img {
     background: var(--border-color);
     margin: 6px 0;
 }
-nav .sidenav-trigger{
+.sidenav-trigger nav a{
    color:var(--text-primary) !important;
 }
 
