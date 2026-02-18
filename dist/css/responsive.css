@@ -1,0 +1,565 @@
+/* ============================================
+   SIFORTECH — Mobile Responsive Layer
+   Structured mobile-first responsive refactor.
+   This file layers on top of style.css WITHOUT
+   breaking the desktop layout.
+
+   Breakpoints:
+     base  : 0 – 480px   (phone)
+     sm    : 481 – 768px  (large phone / small tablet)
+     md    : 769 – 1024px (tablet)
+     lg    : 1025px+      (desktop, untouched)
+
+   Diagnosis (10 issues detected):
+   1.  FIXED WIDTH  — .peran-image-wrapper { height: 480px },
+                       .floating-cards { height: 380px },
+                       .peran-stats-card { max-width: 340px } overflow-clips on 320px.
+   2.  FLEX OVERFLOW — .hero-stats { gap: 40px } with 3 items, no wrap above 600px,
+                        overflows ~360–480px screens.
+   3.  HERO TOO TALL  — min-height: 90vh + padding: 35px 0 80px on mobile
+                         creates empty dead space above the fold.
+   4.  FONT NOT SCALED — .hero-subtitle, .section-subtitle, .peran-desc,
+                          .stat-number all use static rem, not clamp().
+   5.  TOUCH TARGETS   — .sidenav-trigger has no explicit min-size; .btn-filter
+                          is ~36px tall (under 40px minimum).
+   6.  HORIZONTAL SCROLL — .hero-stats flex row at 481–599px with gap: 24px
+                             and long .stat-number strings can clip at ~400px.
+   7.  ABS DECORATION  — .peran-shape { position: absolute } inside wrapper
+                           with fixed height — when stacked on mobile it becomes
+                           a tall blank decorative zone. shape-pulse animation
+                           runs on ALL screen sizes.
+   8.  NAVBAR          — .sidenav-trigger has no guaranteed 44px touch area;
+                          logo font 1.4rem + icon can clip on 320px containers.
+   9.  DESKTOP SPACING — .cta-section { padding: 100px 0 } — no mobile override.
+                          .section-header { margin-bottom: 56px } — not scaled.
+   10. ANIMATION SHIFT  — float-card + pulse-glow + shape-pulse run on mobile,
+                           causing layout shift and battery drain; no < 768px disable.
+   ============================================ */
+
+/* ============================================
+   Spacing variables (extend :root)
+   ============================================ */
+:root {
+  --space-xs : 6px;
+  --space-sm : 10px;
+  --space-md : 16px;
+  --space-lg : 24px;
+  --space-xl : 40px;
+}
+
+/* ============================================
+   Global overflow guard (fix issue #6)
+   ============================================ */
+html {
+  overflow-x: clip; /* stronger than hidden — doesn't create stacking context */
+}
+
+/* Ensure every image is responsive (fix issue #1 images) */
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ============================================
+   BASE — 0 to 480px  (phones)
+   ============================================ */
+@media screen and (max-width: 480px) {
+
+  /* ---- Navbar (fix issues #8, #5) ---- */
+  .nav-fixed .nav-wrapper.container {
+    padding-inline: 12px;
+  }
+
+  /* Ensure logo text never clips */
+  .brand-logo {
+    font-size: 1.1rem !important;
+    gap: 6px;
+  }
+
+  .logo-icon,
+  .logo-icon img {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* 44 × 44 px touch target for hamburger (fix issue #5) */
+  .sidenav-trigger,
+  .nav-hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -4px;
+  }
+
+  /* ---- Hero Section (fix issues #3, #4, #6) ---- */
+  .hero-section {
+    min-height: auto !important;
+    padding: calc(var(--nav-height) + 24px) 0 44px !important;
+  }
+
+  .hero-title {
+    font-size: clamp(1.65rem, 7vw, 2.1rem) !important;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 3.8vw, 1rem);
+    max-width: 100%; /* remove 540px cap */
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .hero-badge {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    margin-bottom: 14px;
+  }
+
+  /* Stats: stack vertically as horizontal row-cards (fix issue #2) */
+  .hero-stats {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .stat-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+  }
+
+  .stat-number {
+    font-size: 1.15rem;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    margin-top: 0;
+    line-height: 1.3;
+  }
+
+  /* CTA buttons: already stacked by existing 600px rule — reinforce */
+  .hero-cta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  /* Hide scroll indicator — saves vertical space */
+  .scroll-indicator {
+    display: none;
+  }
+
+  /* ---- Sections (fix issue #9) ---- */
+  .section {
+    padding: 44px 0;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.875rem, 3.5vw, 0.95rem);
+  }
+
+  /* ---- Kondisi Section ---- */
+  .kondisi-card.card {
+    margin-bottom: 12px;
+  }
+
+  /* ---- Peran Section (fix issues #7, #1) ---- */
+  .peran-content {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .peran-desc {
+    font-size: clamp(0.9rem, 3.8vw, 1rem);
+    margin-bottom: 20px;
+  }
+
+  /* Decorative background shapes: hide on mobile (fix issue #7) */
+  .peran-shape {
+    display: none !important;
+  }
+
+  .peran-image-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 8px 0 4px;
+  }
+
+  .peran-stats-card {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* ---- Layanan Filter (fix issue #5) ---- */
+  .layanan-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .btn-filter {
+    padding: 9px 16px !important;
+    min-height: 40px;
+    font-size: 0.82rem;
+  }
+
+  /* ---- CTA Section (fix issue #9) ---- */
+  .cta-section {
+    padding: 52px 0 !important;
+  }
+
+  .cta-card .card-content {
+    padding: 28px 16px !important;
+  }
+
+  .cta-title {
+    font-size: clamp(1.2rem, 5.5vw, 1.5rem) !important;
+  }
+
+  .cta-desc {
+    font-size: clamp(0.875rem, 3.5vw, 0.95rem);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .cta-features {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ---- Footer ---- */
+  .page-footer {
+    padding-top: 36px;
+  }
+
+  .text-footer h5 {
+    margin-top: 24px !important;
+  }
+
+  /* ---- Floating Action Button ---- */
+  .fixed-action-btn {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  /* ---- Disable animations causing battery drain + layout shift (fix issue #10) ---- */
+  .pulse-btn {
+    animation: none !important;
+    box-shadow: var(--shadow-md) !important;
+  }
+
+  .scroll-arrow {
+    animation: none !important;
+  }
+
+  /* Smaller reveal translate — prevent content jumping from off-screen (fix issue #10) */
+  .reveal[data-anim="fade-up"]    { transform: translateY(12px); }
+  .reveal[data-anim="fade-down"]  { transform: translateY(-12px); }
+  .reveal[data-anim="fade-right"] { transform: translateX(-12px); }
+  .reveal[data-anim="fade-left"]  { transform: translateX(12px); }
+  .reveal[data-anim="zoom-in"]    { transform: scale(0.97); }
+}
+
+/* ============================================
+   SM — 481px to 768px  (large phones / small tablets)
+   ============================================ */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+  /* ---- Navbar ---- */
+  .nav-fixed .nav-wrapper.container {
+    padding-inline: 16px;
+  }
+
+  /* Touch target for hamburger */
+  .sidenav-trigger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* ---- Hero (fix issues #3, #4) ---- */
+  .hero-section {
+    min-height: auto !important;
+    padding: calc(var(--nav-height) + 28px) 0 52px !important;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+  }
+
+  /* Stats: allow wrapping, tighten gap (fix issue #2) */
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  /* CTA buttons side-by-side when possible */
+  .hero-cta {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-cta .btn {
+    flex: 1 1 180px;
+    min-height: 48px;
+  }
+
+  /* ---- Sections (fix issue #9) ---- */
+  .section {
+    padding: 52px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.9rem, 2.8vw, 1rem);
+  }
+
+  /* ---- Peran Section (fix issues #7, #1) ---- */
+  .peran-shape {
+    display: none !important;
+  }
+
+  .peran-image-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 16px 0 8px;
+  }
+
+  .peran-stats-card {
+    max-width: 100%;
+  }
+
+  /* ---- Layanan Filter (fix issue #5) ---- */
+  .layanan-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-filter {
+    min-height: 40px;
+  }
+
+  /* ---- CTA Section (fix issue #9) ---- */
+  .cta-section {
+    padding: 64px 0 !important;
+  }
+
+  .cta-card .card-content {
+    padding: 36px 24px !important;
+  }
+
+  /* ---- Disable float-card animation on < 768px (fix issue #10) ---- */
+  .float-card {
+    animation: none !important;
+  }
+
+  .pulse-btn {
+    animation: none !important;
+    box-shadow: var(--shadow-md) !important;
+  }
+}
+
+/* ============================================
+   MD — 769px to 1024px  (tablets)
+   ============================================ */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+  /* Hero stats: tighten gap on tablet */
+  .hero-stats {
+    gap: 24px;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+
+  /* Peran image: keep at reduced height, no shapes (fix issue #7) */
+  .peran-image-wrapper {
+    height: 360px;
+  }
+
+  .peran-shape {
+    display: none !important;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 80px 0 !important;
+  }
+}
+
+/* ============================================
+   Active / tap states to replace hover-only UI (fix issue: hover on mobile)
+   These replace transform: translateY(-6px) hover which has no touch equivalent
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+
+  /* Remove hover-only lift effects; use active state instead */
+  .kondisi-card:hover,
+  .hasil-card:hover,
+  .layanan-card:hover {
+    transform: none;
+    box-shadow: none !important;
+    border-color: var(--border-color) !important;
+  }
+
+  .kondisi-card:active,
+  .hasil-card:active,
+  .layanan-card:active {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg) !important;
+    border-color: var(--primary-color) !important;
+    transition-duration: 100ms;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  .btn-primary:active {
+    background: var(--primary-dark) !important;
+    transform: scale(0.97);
+  }
+
+  .layanan-cta:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .layanan-cta:active {
+    background: var(--primary-dark);
+    transform: scale(0.97);
+    transition-duration: 80ms;
+  }
+
+  .btn-nav-cta:hover {
+    transform: none;
+  }
+
+  .btn-nav-cta:active {
+    background: var(--primary-dark) !important;
+    transform: scale(0.97);
+  }
+
+  .scroll-arrow:hover {
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+  }
+
+  .scroll-arrow:active {
+    background: var(--primary-color);
+    color: #fff;
+  }
+}
+
+/* ============================================
+   Reduced motion (reinforce existing rule)
+   Disable ALL transforms + animations (fix issue #10)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-stats,
+  .stat-item,
+  .peran-shape,
+  .float-card,
+  .particle,
+  .scroll-arrow,
+  .pulse-btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   Small screen (≤ 380px) — extreme narrow phones
+   ============================================ */
+@media screen and (max-width: 380px) {
+
+  .brand-logo {
+    font-size: 1rem !important;
+  }
+
+  .logo-text {
+    /* Hide text on very narrow screens to prevent logo + hamburger clash */
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 1.8rem) !important;
+  }
+
+  .cta-section .cta-card .card-content {
+    padding: 20px 12px !important;
+  }
+
+  .hero-cta .btn {
+    font-size: 0.875rem;
+    padding: 0 16px !important;
+  }
+
+  /* Stack filter buttons 2-per-row on very narrow screens */
+  .btn-filter {
+    flex: 1 1 calc(50% - 8px);
+    justify-content: center;
+    text-align: center;
+  }
+}
