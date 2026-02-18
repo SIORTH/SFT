@@ -312,7 +312,7 @@ img {
     background: var(--border-color);
     margin: 6px 0;
 }
-nav-wrapper nav .sidenav-trigger{
+nav .sidenav-trigger{
    color:var(--text-primary) !important;
 }
 
@@ -1795,7 +1795,6 @@ body.services-error #layanan-error {
         height: 40px;
         margin-right: -4px;
         flex-shrink: 0;
-        color:var(--text-primary) !important;
     }
 
     /* ---- Hero Section ---- */
@@ -2258,7 +2257,6 @@ body.services-error #layanan-error {
     .nav-hamburger {
         width: 38px;
         height: 38px;
-       color:var(--text-primary) !important;
     }
 }
 
