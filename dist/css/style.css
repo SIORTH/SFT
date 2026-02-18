@@ -313,6 +313,10 @@ img {
     margin: 6px 0;
 }
 
+.sidenav nav a {
+   color: var(--text-primary) !important;
+}
+
 /* ============================================
    Hero Section
    ============================================ */
