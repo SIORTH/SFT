@@ -313,7 +313,7 @@ img {
     margin: 6px 0;
 }
 nav .sidenav-trigger{
-   color:var(--text-primary);
+   color:var(--text-primary) !important;
 }
 
 /* ============================================
