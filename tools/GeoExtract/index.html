@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sifortech Pro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+  <style>
+    :root { --sf-bg:#f1f4f8; --sf-navy:#11243f; --sf-primary:#2f65d8; --sf-border:#d6dfea; --sf-muted:#6e8099; --sf-danger:#d14d5c; --sf-warning:#b98012; }
+    html, body { min-height:100%; background:var(--sf-bg); }
+    .sf-app { min-height:100vh; background:linear-gradient(180deg,var(--sf-navy) 0 220px,var(--sf-bg) 220px 100%); }
+    .sf-hero { padding:1.15rem 1rem 1.1rem; color:#e9f1ff; background-image:radial-gradient(circle at 10px 10px,rgba(255,255,255,.09) 2px,transparent 2px),radial-gradient(circle at 26px 26px,rgba(255,255,255,.08) 1.8px,transparent 1.8px); background-size:38px 38px; }
+    .sf-title { margin:0; color:#fff; font-size:2rem; font-weight:800; letter-spacing:-.02em; line-height:1.06; }
+    .sf-title span { color:#73a7ff; }
+    .sf-subtitle { margin-top:.4rem; color:#b8c8df; font-size:1rem; line-height:1.35; }
+    .sf-version { margin-top:.65rem; display:inline-block; font-size:.75rem; font-weight:700; color:#e2ecff; border:1px solid rgba(255,255,255,.2); border-radius:.6rem; padding:.45rem .66rem; background:rgba(13,30,54,.45); }
+    .sf-main { margin-top:-.35rem; padding:0 .9rem 1.2rem; }
+    .sf-card { border-radius:1.2rem; border:1px solid #e6edf5; box-shadow:0 8px 20px rgba(10,26,48,.08); background:#fff; overflow:hidden; }
+    .sf-card .card-content { padding:1rem; }
+    .sf-step-title { margin:0; display:flex; align-items:center; gap:.65rem; color:#1a2d49; font-size:1.2rem; font-weight:700; }
+    .sf-step-num { width:2rem; height:2rem; border-radius:.7rem; background:#dfe9ff; color:var(--sf-primary); display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.95rem; }
+    .sf-dropzone { border:2px dashed #cad5e5; border-radius:1rem; background:#f9fbff; text-align:center; padding:1.45rem 1rem; transition:.2s ease; cursor:pointer; }
+    .sf-dropzone:hover,.sf-dropzone.is-dragover { border-color:var(--sf-primary); background:#edf3ff; }
+    .sf-upload-icon { width:62px; height:62px; margin:0 auto .8rem; border-radius:18px; background:#eef2f8; color:#7f93ae; display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:700; }
+    .sf-upload-title { margin:0; color:#314964; font-size:1rem; font-weight:700; }
+    .sf-upload-sub { margin-top:.3rem; color:var(--sf-muted); font-size:.82rem; }
+    .sf-note { margin-top:.8rem; color:#8ea0b8; font-size:.78rem; line-height:1.35; text-align:center; }
+    .sf-label { margin-bottom:.35rem; color:#7489a5; font-size:.74rem; letter-spacing:.11em; text-transform:uppercase; font-weight:700; }
+    .sf-input { height:44px; border-radius:.75rem !important; border-color:var(--sf-border) !important; box-shadow:none !important; background:#f8fafd; }
+    .sf-output-list label { display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem; font-size:.95rem; color:#32465f; font-weight:600; }
+    .sf-estimate { margin:.4rem 0 0; color:#667a95; font-size:.84rem; }
+    .sf-estimate.estimate-warning { color:var(--sf-warning); }
+    .sf-estimate.estimate-danger { color:var(--sf-danger); font-weight:700; }
+    .sf-log { min-height:140px; border-radius:.8rem; resize:vertical; background:#101a2a; color:#96c0ff; font-size:.76rem; line-height:1.35; }
+    .sf-tips { margin-top:.95rem; padding:1rem; border-radius:1.15rem; border:1px solid #e6edf5; box-shadow:0 8px 20px rgba(10,26,48,.06); background:#fff; }
+    .sf-tips h3 { margin:0 0 .65rem; color:#395678; font-size:1rem; letter-spacing:.05em; text-transform:uppercase; }
+    .sf-tips li { margin-bottom:.45rem; font-size:.93rem; color:#27415f; }
+    .sf-tips li::marker { color:#22a86f; }
+    .sf-hidden-canvas { display:none; }
+    @media screen and (min-width:769px) { .sf-hero{padding:1.8rem 1.25rem 1.3rem;} .sf-main{padding:0 1.25rem 1.5rem;} .sf-card .card-content{padding:1.25rem;} .sf-note{text-align:left;} }
+  </style>
+</head>
+<body>
+  <div class="sf-app">
+    <header class="sf-hero">
+      <div class="container is-max-desktop">
+        <h1 class="sf-title">Sifortech <span>Pro</span></h1>
+        <p class="sf-subtitle">Konversi GeoPDF/GeoTIFF ke MBTiles, XYZ, dan PNG secara offline langsung di perangkat Anda.</p>
+        <span class="sf-version">ENGINE VERSION v4.0-mobile</span>
+      </div>
+    </header>
+
+    <main class="sf-main">
+      <div class="container is-max-desktop">
+        <div class="columns is-variable is-4 is-desktop">
+          <div class="column is-5-desktop">
+            <section class="sf-card card">
+              <div class="card-content">
+                <h2 class="sf-step-title"><span class="sf-step-num">1</span> Mulai Konversi</h2>
+                <div id="dropzone" class="sf-dropzone mt-4">
+                  <input type="file" id="fileInput" accept=".pdf,.tif,.tiff" class="is-hidden" />
+                  <label for="fileInput" class="is-clickable">
+                    <div class="sf-upload-icon">UP</div>
+                    <p id="fileNameDisplay" class="sf-upload-title">Seret atau pilih file di sini</p>
+                    <p class="sf-upload-sub">Mendukung GeoTIFF dan GeoPDF (.pdf, .tif, .tiff)</p>
+                  </label>
+                </div>
+                <button id="btnProcess" class="button is-link is-fullwidth is-medium has-text-weight-bold mt-4">PROSES SEKARANG</button>
+                <p class="sf-note">Semua proses dilakukan lokal di browser. File Anda tidak diunggah ke server.</p>
+              </div>
+            </section>
+            <section class="sf-tips">
+              <h3>Kenapa Sifortech Pro?</h3>
+              <ul>
+                <li>Output bersih untuk QGIS, ArcGIS, dan aplikasi peta mobile.</li>
+                <li>Deteksi otomatis geospatial bounds (GeoTIFF/GeoPDF).</li>
+                <li>Pemrosesan full client-side, aman tanpa backend.</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="column is-7-desktop">
+            <section class="sf-card card">
+              <div class="card-content">
+                <h2 class="sf-step-title"><span class="sf-step-num">2</span> Konfigurasi Output</h2>
+                <div id="detectStatus" class="notification is-success is-light mt-4 is-hidden">
+                  <p id="detectMsg" class="has-text-weight-semibold mb-1">Metadata terdeteksi.</p>
+                  <p id="crsInfo" class="is-size-7 has-text-weight-medium"></p>
+                </div>
+                <div class="mt-4">
+                  <p class="sf-label">WGS84 Bounding Box</p>
+                  <div class="columns is-mobile is-multiline">
+                    <div class="column is-6"><input type="number" id="minLng" step="any" class="input sf-input" placeholder="Min Lng" /></div>
+                    <div class="column is-6"><input type="number" id="maxLng" step="any" class="input sf-input" placeholder="Max Lng" /></div>
+                    <div class="column is-6"><input type="number" id="minLat" step="any" class="input sf-input" placeholder="Min Lat" /></div>
+                    <div class="column is-6"><input type="number" id="maxLat" step="any" class="input sf-input" placeholder="Max Lat" /></div>
+                  </div>
+                </div>
+                <div class="columns is-mobile mt-1">
+                  <div class="column is-6"><p class="sf-label">Zoom Min</p><input type="number" id="minZoom" min="0" max="22" value="10" class="input sf-input" /></div>
+                  <div class="column is-6"><p class="sf-label">Zoom Max</p><input type="number" id="maxZoom" min="0" max="22" value="15" class="input sf-input" /></div>
+                </div>
+                <div class="columns is-mobile mt-1">
+                  <div class="column is-6"><p class="sf-label">PDF Page</p><input type="number" id="pdfPage" min="1" value="1" class="input sf-input" /></div>
+                  <div class="column is-6"><p class="sf-label">PDF Render Scale</p><input type="number" id="pdfScale" min="1" max="6" step="0.5" value="3" class="input sf-input" /></div>
+                </div>
+                <div class="mt-2 sf-output-list">
+                  <p class="sf-label">Format Output</p>
+                  <label><input type="checkbox" id="optMbtiles" checked /> MBTiles (.mbtiles)</label>
+                  <label><input type="checkbox" id="optXyz" /> XYZ Tiles (.zip)</label>
+                  <label><input type="checkbox" id="optPng" checked /> PNG Mosaic (.png)</label>
+                </div>
+                <p id="estimateInfo" class="sf-estimate">Estimasi tile: -</p>
+                <div id="logContainer" class="mt-4 is-hidden">
+                  <div class="is-flex is-justify-content-space-between is-size-7 has-text-grey mb-2"><span id="statusText">Menyiapkan...</span><span id="progressPct">0%</span></div>
+                  <progress id="progressBar" class="progress is-link" value="0" max="100">0%</progress>
+                  <textarea id="logArea" class="textarea sf-log" readonly></textarea>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <canvas id="renderCanvas" class="sf-hidden-canvas"></canvas>
+  <canvas id="tileCanvas" width="256" height="256" class="sf-hidden-canvas"></canvas>
+
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const MAX_MERCATOR_LAT = 85.05112878;
+    const SQL_WASM_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/';
+
+    const UI = {
+      dropzone: document.getElementById('dropzone'),
+      input: document.getElementById('fileInput'),
+      fileName: document.getElementById('fileNameDisplay'),
+      btnProcess: document.getElementById('btnProcess'),
+      logContainer: document.getElementById('logContainer'),
+      statusText: document.getElementById('statusText'),
+      progressBar: document.getElementById('progressBar'),
+      progressPct: document.getElementById('progressPct'),
+      logArea: document.getElementById('logArea'),
+      detectStatus: document.getElementById('detectStatus'),
+      detectMsg: document.getElementById('detectMsg'),
+      crsInfo: document.getElementById('crsInfo'),
+      minLng: document.getElementById('minLng'),
+      maxLng: document.getElementById('maxLng'),
+      minLat: document.getElementById('minLat'),
+      maxLat: document.getElementById('maxLat'),
+      minZoom: document.getElementById('minZoom'),
+      maxZoom: document.getElementById('maxZoom'),
+      pdfPage: document.getElementById('pdfPage'),
+      pdfScale: document.getElementById('pdfScale'),
+      optMbtiles: document.getElementById('optMbtiles'),
+      optXyz: document.getElementById('optXyz'),
+      optPng: document.getElementById('optPng'),
+      estimateInfo: document.getElementById('estimateInfo'),
+      renderCanvas: document.getElementById('renderCanvas'),
+      tileCanvas: document.getElementById('tileCanvas')
+    };
+
+    let selectedFile = null;
+    let selectedPdfPageCount = 1;
+    let selectedPdfArrayBuffer = null;
+    let sqlRuntime = null;
+
+    setupEvents();
+    setPdfPageControl(1);
+    refreshTileEstimate();
+    function setupEvents() {
+      UI.input.addEventListener('change', async (event) => {
+        if (!event.target.files || !event.target.files.length) return;
+        await onFileSelected(event.target.files[0]);
+      });
+      UI.btnProcess.addEventListener('click', onProcessClick);
+      [UI.minLng, UI.maxLng, UI.minLat, UI.maxLat, UI.minZoom, UI.maxZoom].forEach((input) => {
+        input.addEventListener('input', refreshTileEstimate);
+      });
+      setupDropzone();
+    }
+
+    async function onFileSelected(file) {
+      selectedFile = file;
+      selectedPdfArrayBuffer = null;
+      selectedPdfPageCount = 1;
+
+      UI.fileName.textContent = selectedFile.name;
+      UI.detectStatus.classList.add('is-hidden');
+      UI.logContainer.classList.remove('is-hidden');
+      UI.logArea.value = '';
+      updateProgress(0, 'File dipilih');
+      appendLog(`[System] File dipilih: ${selectedFile.name}`);
+
+      clearBounds();
+      setPdfPageControl(1);
+
+      const ext = selectedFile.name.toLowerCase();
+      if (ext.endsWith('.tif') || ext.endsWith('.tiff')) {
+        try {
+          const tiff = await GeoTIFF.fromBlob(selectedFile);
+          const image = await tiff.getImage();
+          const bbox = image.getBoundingBox();
+          const geoKeys = image.getGeoKeys();
+          const detected = detectAndConvertBoundsToWgs84(bbox, geoKeys);
+          fillBounds(detected.bbox);
+          UI.detectMsg.textContent = 'Metadata GeoTIFF berhasil dideteksi.';
+          UI.crsInfo.textContent = detected.crsLabel;
+          UI.detectStatus.classList.remove('is-hidden');
+          appendLog(`[Info] ${detected.crsLabel}`);
+        } catch (err) {
+          appendLog(`[Error] Metadata GeoTIFF gagal dibaca: ${err.message}`);
+        }
+        refreshTileEstimate();
+        return;
+      }
+
+      if (ext.endsWith('.pdf')) {
+        try {
+          selectedPdfArrayBuffer = await selectedFile.arrayBuffer();
+          const detectedPdf = detectGeoPdfBoundsFromArrayBuffer(selectedPdfArrayBuffer);
+          fillBounds(detectedPdf.bbox);
+          UI.detectMsg.textContent = 'Metadata GeoPDF berhasil dideteksi.';
+          UI.crsInfo.textContent = detectedPdf.crsLabel;
+          UI.detectStatus.classList.remove('is-hidden');
+          appendLog(`[Info] ${detectedPdf.crsLabel}`);
+        } catch (err) {
+          appendLog(`[Warn] Auto-detect GeoPDF gagal: ${err.message}`);
+          appendLog('[Info] Isi bounds WGS84 manual jika metadata PDF tidak lengkap.');
+        }
+
+        try {
+          const bytes = selectedPdfArrayBuffer || await selectedFile.arrayBuffer();
+          const pdf = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+          selectedPdfPageCount = pdf.numPages || 1;
+          setPdfPageControl(selectedPdfPageCount);
+          appendLog(`[Info] PDF pages: ${selectedPdfPageCount}`);
+        } catch (err) {
+          appendLog(`[Warn] Gagal membaca jumlah halaman PDF: ${err.message}`);
+        }
+
+        refreshTileEstimate();
+        return;
+      }
+
+      appendLog('[Warn] Format file tidak didukung. Gunakan .pdf, .tif, atau .tiff');
+      refreshTileEstimate();
+    }
+
+    async function onProcessClick() {
+      if (!selectedFile) {
+        alert('Pilih file terlebih dahulu.');
+        return;
+      }
+
+      const outputOptions = {
+        mbtiles: UI.optMbtiles.checked,
+        xyz: UI.optXyz.checked,
+        png: UI.optPng.checked,
+      };
+      if (!outputOptions.mbtiles && !outputOptions.xyz && !outputOptions.png) {
+        alert('Pilih minimal satu format output.');
+        return;
+      }
+
+      const bounds = readBounds();
+      if (!bounds) {
+        alert('Koordinat bounds belum lengkap atau tidak valid.');
+        return;
+      }
+
+      const zoom = readZoomRange(true);
+      if (!zoom) {
+        alert('Range zoom tidak valid.');
+        return;
+      }
+
+      const totalEstimate = estimateTileCount(bounds, zoom.min, zoom.max);
+      const tileLimit = outputOptions.xyz ? 35000 : 60000;
+      if ((outputOptions.mbtiles || outputOptions.xyz) && totalEstimate > tileLimit) {
+        alert(`Tile terlalu banyak (${totalEstimate.toLocaleString()}). Kurangi zoom range atau area.`);
+        return;
+      }
+
+      setProcessing(true);
+      UI.logContainer.classList.remove('is-hidden');
+      UI.logArea.value = '';
+      appendLog('[Process] Memulai konversi...');
+
+      try {
+        updateProgress(4, 'Render raster sumber');
+        const sourceCanvas = await renderSourceToCanvas(selectedFile, getPdfRenderSettings());
+        appendLog(`[Info] Raster siap: ${sourceCanvas.width}x${sourceCanvas.height}px`);
+
+        if (outputOptions.png) {
+          const pngBlob = await canvasToBlob(sourceCanvas, 'image/png');
+          const pngName = `${safeFileName(selectedFile.name)}_mosaic.png`;
+          triggerDownload(pngBlob, pngName);
+          appendLog(`[Success] PNG mosaic dibuat: ${pngName}`);
+        }
+
+        if (!outputOptions.mbtiles && !outputOptions.xyz) {
+          updateProgress(100, 'Selesai');
+          appendLog('[Success] Konversi selesai.');
+          return;
+        }
+
+        let db = null;
+        let stmt = null;
+        if (outputOptions.mbtiles) {
+          updateProgress(8, 'Inisialisasi database MBTiles');
+          const SQL = await getSqlRuntime();
+          db = new SQL.Database();
+          initializeMbtilesSchema(db, selectedFile.name, bounds, zoom);
+          stmt = db.prepare('INSERT INTO tiles (zoom_level, tile_column, tile_row, tile_data) VALUES (?, ?, ?, ?)');
+        }
+
+        let zip = null;
+        if (outputOptions.xyz) {
+          updateProgress(10, 'Inisialisasi XYZ ZIP');
+          const jsZipModule = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
+          zip = new jsZipModule.default();
+        }
+
+        const tilePlan = getTilePlan(bounds, zoom.min, zoom.max);
+        appendLog(`[Info] Total tile: ${tilePlan.total.toLocaleString()}`);
+        let processed = 0;
+        const tileCtx = UI.tileCanvas.getContext('2d', { alpha: true });
+        for (const level of tilePlan.levels) {
+          appendLog(`[Info] Proses zoom ${level.z}... (${level.count.toLocaleString()} tile)`);
+          for (let x = level.xMin; x <= level.xMax; x += 1) {
+            for (let y = level.yMin; y <= level.yMax; y += 1) {
+              const tileBounds = getTileBounds(x, y, level.z);
+              const srcRect = tileBoundsToSourceRect(tileBounds, bounds, sourceCanvas.width, sourceCanvas.height);
+
+              tileCtx.clearRect(0, 0, 256, 256);
+              drawClippedSource(tileCtx, sourceCanvas, srcRect);
+              const blob = await canvasToBlob(UI.tileCanvas, 'image/png');
+
+              if (outputOptions.mbtiles) {
+                const buffer = new Uint8Array(await blob.arrayBuffer());
+                stmt.run([level.z, x, tileYToTms(y, level.z), buffer]);
+              }
+
+              if (outputOptions.xyz) {
+                zip.file(`tiles/${level.z}/${x}/${y}.png`, blob);
+              }
+
+              processed += 1;
+              if (processed % 25 === 0 || processed === tilePlan.total) {
+                const pct = 10 + Math.floor((processed / tilePlan.total) * 85);
+                updateProgress(pct, `Menulis tile ${processed}/${tilePlan.total}`);
+              }
+            }
+          }
+        }
+
+        if (outputOptions.mbtiles) {
+          stmt.free();
+          updateProgress(97, 'Menyimpan MBTiles');
+          const out = db.export();
+          db.close();
+          const mbtilesBlob = new Blob([out], { type: 'application/x-sqlite3' });
+          const mbtilesName = `${safeFileName(selectedFile.name)}.mbtiles`;
+          triggerDownload(mbtilesBlob, mbtilesName);
+          appendLog(`[Success] MBTiles dibuat: ${mbtilesName}`);
+        }
+
+        if (outputOptions.xyz) {
+          updateProgress(98, 'Menyusun XYZ ZIP');
+          const zipBlob = await zip.generateAsync({
+            type: 'blob',
+            compression: 'DEFLATE',
+            compressionOptions: { level: 6 },
+          });
+          const xyzName = `${safeFileName(selectedFile.name)}_xyz.zip`;
+          triggerDownload(zipBlob, xyzName);
+          appendLog(`[Success] XYZ ZIP dibuat: ${xyzName}`);
+        }
+
+        updateProgress(100, 'Selesai');
+        appendLog('[Success] Semua output selesai dibuat.');
+      } catch (err) {
+        appendLog(`[Error] ${err.message}`);
+      } finally {
+        setProcessing(false);
+      }
+    }
+
+    function setupDropzone() {
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+        UI.dropzone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        });
+      });
+
+      ['dragenter', 'dragover'].forEach((eventName) => {
+        UI.dropzone.addEventListener(eventName, () => UI.dropzone.classList.add('is-dragover'));
+      });
+
+      ['dragleave', 'drop'].forEach((eventName) => {
+        UI.dropzone.addEventListener(eventName, () => UI.dropzone.classList.remove('is-dragover'));
+      });
+
+      UI.dropzone.addEventListener('drop', async (event) => {
+        const file = event.dataTransfer?.files?.[0];
+        if (!file) return;
+        await onFileSelected(file);
+      });
+    }
+
+    function refreshTileEstimate() {
+      const bounds = readBounds();
+      const zoom = readZoomRange(false);
+      UI.estimateInfo.classList.remove('estimate-warning', 'estimate-danger');
+      if (!bounds || !zoom) {
+        UI.estimateInfo.textContent = 'Estimasi tile: -';
+        return;
+      }
+
+      const total = estimateTileCount(bounds, zoom.min, zoom.max);
+      UI.estimateInfo.textContent = `Estimasi tile: ${total.toLocaleString()} (z${zoom.min}-z${zoom.max})`;
+      if (total > 60000) UI.estimateInfo.classList.add('estimate-danger');
+      else if (total > 15000) UI.estimateInfo.classList.add('estimate-warning');
+    }
+
+    function setPdfPageControl(maxPage) {
+      const safeMax = Math.max(1, maxPage || 1);
+      UI.pdfPage.max = String(safeMax);
+      UI.pdfPage.value = String(clampInt(parseInt(UI.pdfPage.value, 10), 1, safeMax));
+    }
+
+    function getPdfRenderSettings() {
+      const page = clampInt(parseInt(UI.pdfPage.value, 10), 1, Math.max(1, selectedPdfPageCount));
+      const scale = clampFloat(parseFloat(UI.pdfScale.value), 1, 6);
+      UI.pdfPage.value = String(page);
+      UI.pdfScale.value = String(scale);
+      return { page, scale };
+    }
+
+    async function getSqlRuntime() {
+      if (sqlRuntime) return sqlRuntime;
+      sqlRuntime = await initSqlJs({ locateFile: (f) => `${SQL_WASM_BASE}${f}` });
+      return sqlRuntime;
+    }
+    function detectAndConvertBoundsToWgs84(bbox, geoKeys) {
+      if (!Array.isArray(bbox) || bbox.length !== 4) throw new Error('Bounding box GeoTIFF tidak valid.');
+
+      const projectedCode = Number(geoKeys?.ProjectedCSTypeGeoKey);
+      const geographicCode = Number(geoKeys?.GeographicTypeGeoKey);
+
+      if (geographicCode === 4326 || looksLikeWgs84(bbox)) {
+        return {
+          bbox: normalizeBboxOrder(bbox),
+          crsLabel: `Detected: Geographic WGS84 (EPSG:${geographicCode || 4326})`,
+        };
+      }
+
+      if (projectedCode >= 32601 && projectedCode <= 32660) {
+        const zone = projectedCode - 32600;
+        return {
+          bbox: convertProjectedBboxToWgs84(bbox, `+proj=utm +zone=${zone} +datum=WGS84 +units=m +north +no_defs`),
+          crsLabel: `Detected: UTM North (EPSG:${projectedCode}) -> WGS84`,
+        };
+      }
+
+      if (projectedCode >= 32701 && projectedCode <= 32760) {
+        const zone = projectedCode - 32700;
+        return {
+          bbox: convertProjectedBboxToWgs84(bbox, `+proj=utm +zone=${zone} +datum=WGS84 +units=m +south +no_defs`),
+          crsLabel: `Detected: UTM South (EPSG:${projectedCode}) -> WGS84`,
+        };
+      }
+
+      return {
+        bbox: normalizeBboxOrder(bbox),
+        crsLabel: `Detected: Unknown/Projected CRS (EPSG:${Number.isFinite(projectedCode) ? projectedCode : 'N/A'})`,
+      };
+    }
+
+    function detectGeoPdfBoundsFromArrayBuffer(arrayBuffer) {
+      const raw = new TextDecoder('latin1').decode(arrayBuffer);
+      const epsg = detectPdfEpsg(raw);
+      const gpts = parsePdfArray(raw, 'GPTS');
+      const neatline = parsePdfParenthesizedNumbers(raw, 'NEATLINE');
+
+      const gptsCandidate = detectGeoSeriesBounds(gpts, epsg);
+      if (gptsCandidate) return { bbox: gptsCandidate.bbox, crsLabel: `Detected: GeoPDF GPTS (${gptsCandidate.note})` };
+
+      const neatlineCandidate = detectGeoSeriesBounds(neatline, epsg);
+      if (neatlineCandidate) return { bbox: neatlineCandidate.bbox, crsLabel: `Detected: GeoPDF NEATLINE (${neatlineCandidate.note})` };
+
+      throw new Error('Tidak menemukan GPTS/NEATLINE valid.');
+    }
+
+    function detectGeoSeriesBounds(series, epsg) {
+      if (!Array.isArray(series) || series.length < 4) return null;
+
+      const candidates = [];
+      const bboxXY = bboxFromPairSeries(series, false);
+      const bboxYX = bboxFromPairSeries(series, true);
+      if (bboxXY) candidates.push({ bbox: bboxXY, mode: 'x,y' });
+      if (bboxYX) candidates.push({ bbox: bboxYX, mode: 'y,x' });
+
+      for (const candidate of candidates) {
+        if (isValidWgs84Bounds(candidate.bbox)) return { bbox: normalizeBboxOrder(candidate.bbox), note: `${candidate.mode}, WGS84` };
+      }
+
+      if (Number.isFinite(epsg)) {
+        for (const candidate of candidates) {
+          const converted = convertProjectedBboxByEpsg(candidate.bbox, epsg);
+          if (converted && isValidWgs84Bounds(converted)) {
+            return { bbox: normalizeBboxOrder(converted), note: `${candidate.mode}, EPSG:${epsg} -> WGS84` };
+          }
+        }
+      }
+
+      return null;
+    }
+
+    function detectPdfEpsg(rawPdfText) {
+      const direct = rawPdfText.match(/EPSG[:\s"]+(\d{3,6})/i);
+      if (direct) return Number(direct[1]);
+      const authority = rawPdfText.match(/AUTHORITY\s*\[\s*"EPSG"\s*,\s*"(\d{3,6})"\s*\]/i);
+      if (authority) return Number(authority[1]);
+      return NaN;
+    }
+
+    function parsePdfArray(rawPdfText, key) {
+      const regex = new RegExp(`/${key}\\s*\\[([\\s\\S]*?)\\]`, 'i');
+      const match = rawPdfText.match(regex);
+      if (!match) return [];
+      return parseNumberSeries(match[1]);
+    }
+
+    function parsePdfParenthesizedNumbers(rawPdfText, key) {
+      const regex = new RegExp(`${key}\\s*\\(([\\s\\S]*?)\\)`, 'i');
+      const match = rawPdfText.match(regex);
+      if (!match) return [];
+      return parseNumberSeries(match[1]);
+    }
+
+    function parseNumberSeries(text) {
+      const numbers = text.match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g) || [];
+      return numbers.map(Number).filter(Number.isFinite);
+    }
+
+    function bboxFromPairSeries(values, swapXY) {
+      if (!Array.isArray(values) || values.length < 4) return null;
+      const xs = [];
+      const ys = [];
+      for (let i = 0; i + 1 < values.length; i += 2) {
+        const a = values[i];
+        const b = values[i + 1];
+        if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
+        xs.push(swapXY ? b : a);
+        ys.push(swapXY ? a : b);
+      }
+      if (!xs.length || !ys.length) return null;
+      return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+    }
+
+    function isValidWgs84Bounds(bbox) {
+      if (!Array.isArray(bbox) || bbox.length !== 4) return false;
+      const [minX, minY, maxX, maxY] = normalizeBboxOrder(bbox);
+      return Number.isFinite(minX) && Number.isFinite(minY) && Number.isFinite(maxX) && Number.isFinite(maxY) &&
+        minX >= -180 && maxX <= 180 && minY >= -90 && maxY <= 90 && minX < maxX && minY < maxY;
+    }
+
+    function convertProjectedBboxByEpsg(bbox, epsg) {
+      if (!Number.isFinite(epsg)) return null;
+      if (epsg >= 32601 && epsg <= 32660) {
+        const zone = epsg - 32600;
+        return convertProjectedBboxToWgs84(bbox, `+proj=utm +zone=${zone} +datum=WGS84 +units=m +north +no_defs`);
+      }
+      if (epsg >= 32701 && epsg <= 32760) {
+        const zone = epsg - 32700;
+        return convertProjectedBboxToWgs84(bbox, `+proj=utm +zone=${zone} +datum=WGS84 +units=m +south +no_defs`);
+      }
+      return null;
+    }
+
+    function convertProjectedBboxToWgs84(bbox, sourceProj) {
+      const [minX, minY, maxX, maxY] = normalizeBboxOrder(bbox);
+      const corners = [
+        proj4(sourceProj, 'EPSG:4326', [minX, minY]),
+        proj4(sourceProj, 'EPSG:4326', [minX, maxY]),
+        proj4(sourceProj, 'EPSG:4326', [maxX, minY]),
+        proj4(sourceProj, 'EPSG:4326', [maxX, maxY]),
+      ];
+      const lons = corners.map((c) => c[0]);
+      const lats = corners.map((c) => c[1]);
+      return [Math.min(...lons), Math.min(...lats), Math.max(...lons), Math.max(...lats)];
+    }
+
+    function looksLikeWgs84(bbox) {
+      const [minX, minY, maxX, maxY] = bbox;
+      return Number.isFinite(minX) && Number.isFinite(minY) && Number.isFinite(maxX) && Number.isFinite(maxY) &&
+        minX >= -180 && maxX <= 180 && minY >= -90 && maxY <= 90;
+    }
+    async function renderSourceToCanvas(file, renderSettings) {
+      const canvas = UI.renderCanvas;
+      const ctx = canvas.getContext('2d', { alpha: true, willReadFrequently: true });
+      const lowerName = file.name.toLowerCase();
+
+      if (lowerName.endsWith('.pdf')) {
+        const bytes = selectedPdfArrayBuffer || await file.arrayBuffer();
+        selectedPdfArrayBuffer = bytes;
+        const pdf = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+        selectedPdfPageCount = pdf.numPages || 1;
+        setPdfPageControl(selectedPdfPageCount);
+
+        const page = await pdf.getPage(clampInt(renderSettings.page, 1, selectedPdfPageCount));
+        const viewport = page.getViewport({ scale: clampFloat(renderSettings.scale, 1, 6) });
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        return canvas;
+      }
+
+      const tiff = await GeoTIFF.fromBlob(file);
+      const image = await tiff.getImage();
+      canvas.width = image.getWidth();
+      canvas.height = image.getHeight();
+
+      const samplesPerPixel = image.getSamplesPerPixel() || 1;
+      const bitsPerSampleRaw = image.fileDirectory?.BitsPerSample;
+      const bitsPerSample = Array.isArray(bitsPerSampleRaw) ? bitsPerSampleRaw[0] : (bitsPerSampleRaw || 8);
+      const maxInput = (2 ** Math.min(bitsPerSample, 16)) - 1;
+
+      const rasters = await image.readRasters({ interleave: true });
+      const imgData = ctx.createImageData(canvas.width, canvas.height);
+      const pixelCount = canvas.width * canvas.height;
+
+      for (let p = 0; p < pixelCount; p += 1) {
+        const srcIndex = p * samplesPerPixel;
+        const dstIndex = p * 4;
+
+        if (samplesPerPixel === 1) {
+          const gray = normalizeSample(rasters[srcIndex], maxInput);
+          imgData.data[dstIndex] = gray;
+          imgData.data[dstIndex + 1] = gray;
+          imgData.data[dstIndex + 2] = gray;
+          imgData.data[dstIndex + 3] = 255;
+        } else if (samplesPerPixel === 2) {
+          const gray = normalizeSample(rasters[srcIndex], maxInput);
+          imgData.data[dstIndex] = gray;
+          imgData.data[dstIndex + 1] = gray;
+          imgData.data[dstIndex + 2] = gray;
+          imgData.data[dstIndex + 3] = normalizeSample(rasters[srcIndex + 1], maxInput);
+        } else {
+          imgData.data[dstIndex] = normalizeSample(rasters[srcIndex], maxInput);
+          imgData.data[dstIndex + 1] = normalizeSample(rasters[srcIndex + 1], maxInput);
+          imgData.data[dstIndex + 2] = normalizeSample(rasters[srcIndex + 2], maxInput);
+          imgData.data[dstIndex + 3] = samplesPerPixel >= 4 ? normalizeSample(rasters[srcIndex + 3], maxInput) : 255;
+        }
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+      return canvas;
+    }
+
+    function initializeMbtilesSchema(db, sourceName, bounds, zoom) {
+      db.run('CREATE TABLE metadata (name text, value text);');
+      db.run('CREATE TABLE tiles (zoom_level integer, tile_column integer, tile_row integer, tile_data blob);');
+      db.run('CREATE UNIQUE INDEX tile_index ON tiles (zoom_level, tile_column, tile_row);');
+
+      const centerLon = (bounds.minX + bounds.maxX) / 2;
+      const centerLat = (bounds.minY + bounds.maxY) / 2;
+      const metaRows = [
+        ['name', sourceName], ['type', 'baselayer'], ['version', '1.0'], ['description', 'Generated in browser'],
+        ['format', 'png'], ['bounds', `${bounds.minX},${bounds.minY},${bounds.maxX},${bounds.maxY}`],
+        ['center', `${centerLon},${centerLat},${zoom.min}`], ['minzoom', String(zoom.min)], ['maxzoom', String(zoom.max)],
+      ];
+
+      const stmt = db.prepare('INSERT INTO metadata (name, value) VALUES (?, ?)');
+      for (const row of metaRows) stmt.run(row);
+      stmt.free();
+    }
+
+    function getTilePlan(bounds, minZoom, maxZoom) {
+      const levels = [];
+      let total = 0;
+      for (let z = minZoom; z <= maxZoom; z += 1) {
+        const xMin = lonToTileX(bounds.minX, z);
+        const xMax = lonToTileX(bounds.maxX, z);
+        const yMin = latToTileY(bounds.maxY, z);
+        const yMax = latToTileY(bounds.minY, z);
+        const count = (xMax - xMin + 1) * (yMax - yMin + 1);
+        total += count;
+        levels.push({ z, xMin, xMax, yMin, yMax, count });
+      }
+      return { levels, total };
+    }
+
+    function estimateTileCount(bounds, minZoom, maxZoom) {
+      return getTilePlan(bounds, minZoom, maxZoom).total;
+    }
+
+    function getTileBounds(x, y, z) {
+      return { west: tileXToLon(x, z), east: tileXToLon(x + 1, z), north: tileYToLat(y, z), south: tileYToLat(y + 1, z) };
+    }
+
+    function tileBoundsToSourceRect(tileBounds, bounds, width, height) {
+      const spanX = bounds.maxX - bounds.minX;
+      const spanY = bounds.maxY - bounds.minY;
+      return {
+        sx: ((tileBounds.west - bounds.minX) / spanX) * width,
+        sy: ((bounds.maxY - tileBounds.north) / spanY) * height,
+        sw: ((tileBounds.east - tileBounds.west) / spanX) * width,
+        sh: ((tileBounds.north - tileBounds.south) / spanY) * height,
+      };
+    }
+
+    function drawClippedSource(tileCtx, srcCanvas, rect) {
+      const srcX1 = rect.sx;
+      const srcY1 = rect.sy;
+      const srcX2 = rect.sx + rect.sw;
+      const srcY2 = rect.sy + rect.sh;
+      const clipX1 = clamp(srcX1, 0, srcCanvas.width);
+      const clipY1 = clamp(srcY1, 0, srcCanvas.height);
+      const clipX2 = clamp(srcX2, 0, srcCanvas.width);
+      const clipY2 = clamp(srcY2, 0, srcCanvas.height);
+      const clipW = clipX2 - clipX1;
+      const clipH = clipY2 - clipY1;
+      if (clipW <= 0 || clipH <= 0 || rect.sw <= 0 || rect.sh <= 0) return;
+
+      const dx = ((clipX1 - srcX1) / rect.sw) * 256;
+      const dy = ((clipY1 - srcY1) / rect.sh) * 256;
+      const dw = (clipW / rect.sw) * 256;
+      const dh = (clipH / rect.sh) * 256;
+      tileCtx.drawImage(srcCanvas, clipX1, clipY1, clipW, clipH, dx, dy, dw, dh);
+    }
+    function lonToTileX(lon, z) {
+      const tiles = 2 ** z;
+      return clampInt(Math.floor(((lon + 180) / 360) * tiles), 0, tiles - 1);
+    }
+
+    function latToTileY(lat, z) {
+      const safeLat = clamp(lat, -MAX_MERCATOR_LAT, MAX_MERCATOR_LAT);
+      const rad = (safeLat * Math.PI) / 180;
+      const tiles = 2 ** z;
+      const y = ((1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) / 2) * tiles;
+      return clampInt(Math.floor(y), 0, tiles - 1);
+    }
+
+    function tileXToLon(x, z) {
+      const tiles = 2 ** z;
+      return (x / tiles) * 360 - 180;
+    }
+
+    function tileYToLat(y, z) {
+      const tiles = 2 ** z;
+      const n = Math.PI - (2 * Math.PI * y) / tiles;
+      return (180 / Math.PI) * Math.atan(Math.sinh(n));
+    }
+
+    function tileYToTms(y, z) {
+      return (2 ** z) - 1 - y;
+    }
+
+    function readBounds() {
+      const minX = parseFloat(UI.minLng.value);
+      const minY = parseFloat(UI.minLat.value);
+      const maxX = parseFloat(UI.maxLng.value);
+      const maxY = parseFloat(UI.maxLat.value);
+      if (![minX, minY, maxX, maxY].every(Number.isFinite)) return null;
+      if (minX >= maxX || minY >= maxY) return null;
+      if (minX < -180 || maxX > 180 || minY < -90 || maxY > 90) return null;
+      return { minX, minY: clamp(minY, -MAX_MERCATOR_LAT, MAX_MERCATOR_LAT), maxX, maxY: clamp(maxY, -MAX_MERCATOR_LAT, MAX_MERCATOR_LAT) };
+    }
+
+    function readZoomRange(applyToInputs) {
+      const min = clampInt(parseInt(UI.minZoom.value, 10), 0, 22);
+      const max = clampInt(parseInt(UI.maxZoom.value, 10), 0, 22);
+      if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) return null;
+      if (applyToInputs) {
+        UI.minZoom.value = String(min);
+        UI.maxZoom.value = String(max);
+      }
+      return { min, max };
+    }
+
+    function fillBounds([minX, minY, maxX, maxY]) {
+      UI.minLng.value = minX.toFixed(8);
+      UI.minLat.value = minY.toFixed(8);
+      UI.maxLng.value = maxX.toFixed(8);
+      UI.maxLat.value = maxY.toFixed(8);
+    }
+
+    function clearBounds() {
+      UI.minLng.value = '';
+      UI.minLat.value = '';
+      UI.maxLng.value = '';
+      UI.maxLat.value = '';
+    }
+
+    function appendLog(message) {
+      const time = new Date().toLocaleTimeString();
+      UI.logArea.value += `[${time}] ${message}\n`;
+      UI.logArea.scrollTop = UI.logArea.scrollHeight;
+    }
+
+    function updateProgress(percent, statusText) {
+      const pct = clampInt(percent, 0, 100);
+      UI.progressBar.value = pct;
+      UI.progressPct.textContent = `${pct}%`;
+      UI.statusText.textContent = statusText;
+    }
+
+    function setProcessing(isBusy) {
+      UI.btnProcess.disabled = isBusy;
+      if (isBusy) UI.btnProcess.classList.add('is-loading');
+      else UI.btnProcess.classList.remove('is-loading');
+    }
+
+    function normalizeSample(value, maxInput) {
+      const safeValue = Number.isFinite(value) ? value : 0;
+      if (maxInput <= 255) return clampInt(safeValue, 0, 255);
+      return clampInt((safeValue / maxInput) * 255, 0, 255);
+    }
+
+    function normalizeBboxOrder(bbox) {
+      let [minX, minY, maxX, maxY] = bbox;
+      if (minX > maxX) [minX, maxX] = [maxX, minX];
+      if (minY > maxY) [minY, maxY] = [maxY, minY];
+      return [minX, minY, maxX, maxY];
+    }
+
+    function safeFileName(name) {
+      return name.replace(/\.[^/.]+$/, '').replace(/[^\w.-]+/g, '_');
+    }
+
+    function triggerDownload(blob, fileName) {
+      const a = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    function canvasToBlob(canvas, type) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('Gagal membuat tile PNG.'));
+            return;
+          }
+          resolve(blob);
+        }, type);
+      });
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function clampInt(value, min, max) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return min;
+      return Math.round(clamp(numeric, min, max));
+    }
+
+    function clampFloat(value, min, max) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return min;
+      return clamp(numeric, min, max);
+    }
+  </script>
+</body>
+</html>
