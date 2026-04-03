@@ -1,629 +1,1123 @@
-<!DOCTYPE html>
-<html lang="id" data-theme="light">
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="SIFORTECH - Partner teknis terpercaya untuk AutoCAD, Revit, GIS, Desain Digital, dan Administrasi Proyek">
-    <meta name="theme-color" content="#DC2626">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/SIFORTECH.ico" />
-    <link rel="apple-touch-icon" href="assets/logo/sifortech.png" />
-    <title>SIFORTECH - Layanan Teknis Terpercaya</title>
+    <title>SIFORTECH | Partner Teknis & IT Terpercaya di Riau</title>
+    <meta name="title" content="SIFORTECH | Partner Teknis & IT Terpercaya di Riau" />
+    <meta name="description" content="Partner teknis terpercaya di Indragiri Hilir, Riau. Layanan jasa drafting CAD, BIM modeling, olah data, dan proposal teknis. Cepat, akurat, profesional." />
+    <meta name="keywords" content="SIFORTECH, Indragiri Hilir, Riau, jasa drafting CAD, BIM modeling, pengolahan data teknik, pembuatan proposal teknis, konsultan teknik" />
+    <meta name="author" content="SIFORTECH" />
+    <meta name="robots" content="index, follow" />
 
-    <!-- Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Material Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sifortech.site/" />
+    <meta property="og:title" content="SIFORTECH | Partner Teknis Terpercaya" />
+    <meta property="og:description" content="Solusi drafting CAD, BIM, dan administrasi teknis dari Indragiri Hilir, Riau. Fokus pada bisnis Anda, biarkan kami urus teknisnya." />
+    <meta property="og:image" content="https://sifortech.site/assets/logo/sifortech-og.png" /> 
+    <meta property="og:site_name" content="SIFORTECH" />
+    <meta property="og:locale" content="id_ID" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sifortech.site/" />
+    <meta property="twitter:title" content="SIFORTECH | Partner Teknis Terpercaya" />
+    <meta property="twitter:description" content="Solusi drafting CAD, BIM, dan administrasi teknis dari Indragiri Hilir, Riau. Cepat, akurat, dan profesional." />
+    <meta property="twitter:image" content="https://sifortech.site/assets/logo/sifortech-og.png" />
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="canonical" href="https://sifortech.site/" />
+
+    <link rel="icon" type="image/x-icon" href="/assets/logo/SIFORTECH.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon128.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/sifortech256.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/favicon512.ico" />
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="dist/css/style.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
-    <!-- Navigation -->
-    <nav class="nav-fixed" role="navigation" aria-label="Navigasi utama">
-        <div class="nav-wrapper container">
-            <a href="/" class="brand-logo" aria-label="SIFORTECH Beranda">
-                <span class="logo-icon">
-                    <img src="assets/logo/sifortech.svg" alt="sifortech logo" width="40" height="40">
-                </span>
-                <span class="logo-text">SIFORTECH</span>
-            </a>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-           <a href="#" data-target="mobile-nav" class="sidenav-trigger" aria-label="Buka menu">
-                <i class="material-icons">menu</i>
-            </a>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-            <ul class="right hide-on-med-and-down nav-menu">
-                <li><a href="#hero" class="nav-link">Beranda</a></li>
-                <li><a href="#kondisi" class="nav-link">Kondisi</a></li>
-                <li><a href="#peran" class="nav-link">Peran</a></li>
-                <li><a href="#layanan" class="nav-link">Layanan</a></li>
-                <li>
-                    <a href="#kontak" class="btn-nav-cta">
-                        <i class="material-icons left">chat</i>Konsultasi
-                    </a>
-                </li>
-                <li>
-                    <button class="btn-floating btn-small theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <i class="material-icons" id="themeIcon">dark_mode</i>
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                blue: "#2563eb",
+                red: "#ef4444",
+                dark: "#0f172a",
+                soft: "#f8fafc",
+                grid: "#cbd5e1",
+              },
+            },
+            animation: {
+              "move-grid": "moveGrid 20s linear infinite",
+              float: "float 6s ease-in-out infinite",
+              "pulse-soft": "pulseSoft 3s ease-in-out infinite",
+            },
+            keyframes: {
+              moveGrid: {
+                "0%": { transform: "translateY(0)" },
+                "100%": { transform: "translateY(40px)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-15px)" },
+              },
+              pulseSoft: {
+                "0%, 100%": { transform: "scale(1)", opacity: "1" },
+                "50%": { transform: "scale(1.05)", opacity: "0.8" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #f8fafc;
+        color: #0f172a;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
 
-    <!-- Mobile Navigation -->
-    <ul class="sidenav" id="mobile-nav" role="menu">
-        <li class="sidenav-brand">
-            <a href="#hero" class="sidenav-close">
-                <span class="sidenav-brand-icon">
-                    <img src="assets/logo/sifortech.svg" alt="SIFORTECH" width="32" height="32">
-                </span>
-                <span class="sidenav-brand-text">SIFORTECH</span>
-            </a>
-        </li>
-        <li class="sidenav-divider">
-            <div class="divider"></div>
-        </li>
-        <li class="sidenav-nav">
-            <a href="#hero" class="sidenav-close active">
-                <span class="nav-icon"><i class="material-icons">home</i></span>
-                <span class="nav-label">Beranda</span>
-            </a>
-        </li>
-        <li class="sidenav-nav">
-            <a href="#kondisi" class="sidenav-close">
-                <span class="nav-icon"><i class="material-icons">help_outline</i></span>
-                <span class="nav-label">Kondisi</span>
-            </a>
-        </li>
-        <li class="sidenav-nav">
-            <a href="#peran" class="sidenav-close">
-                <span class="nav-icon"><i class="material-icons">groups</i></span>
-                <span class="nav-label">Peran</span>
-            </a>
-        </li>
-        <li class="sidenav-nav">
-            <a href="#layanan" class="sidenav-close">
-                <span class="nav-icon"><i class="material-icons">build</i></span>
-                <span class="nav-label">Layanan</span>
-            </a>
-        </li>
-        <li class="sidenav-nav">
-            <a href="#kontak" class="sidenav-close">
-                <span class="nav-icon"><i class="material-icons">chat</i></span>
-                <span class="nav-label">Konsultasi</span>
-            </a>
-        </li>
-            <div class="divider"></div>
-        </li>
-        <li>
-            <a href="#" class="theme-toggle-mobile" id="themeToggleMobile">
-                <i class="material-icons" id="themeIconMobile">dark_mode</i>
-                <span id="themeTextMobile">Mode Gelap</span>
-            </a>
-        </li>
-    </ul>
+      /* Modern Blueprint Background */
+      .bg-modern-blueprint {
+        position: fixed;
+        top: -40px;
+        left: 0;
+        right: 0;
+        bottom: -40px;
+        z-index: -1;
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(37, 99, 235, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(37, 99, 235, 0.04) 1px,
+            transparent 1px
+          );
+        pointer-events: none;
+      }
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section scrollspy" aria-labelledby="hero-title">
-        <div class="hero-bg-pattern"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="container hero-container">
-            <div class="row valign-wrapper">
-                <div class="col s12 l8 hero-content">
-                    <h1 id="hero-title" class="hero-title reveal" data-anim="fade-up">
-                        Pekerjaan Teknis Menumpuk?
-                        <span class="text-gradient">Kami Siap Bantu</span>
-                    </h1>
-                    <p class="hero-subtitle reveal" data-anim="fade-up" data-delay="100">
-                        Dokumen, gambar teknis, dan laporan yang seharusnya membantu justru menjadi beban?
-                        Serahkan pada kami, fokuslah pada inti proyek Anda.
-                    </p>
-                    <div class="hero-badge reveal" data-anim="fade-down">
-                        <i class="material-icons">verified</i>
-                        <span>Partner Teknis Terpercaya</span>
-                    </div>
-                    <div class="hero-stats reveal" data-anim="fade-up" data-delay="200">
+      /* Glassmorphism Cards */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+      .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.05),
+          0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        border-color: rgba(37, 99, 235, 0.2);
+      }
 
-                        <div class="stat-item">
-                            <span class="stat-number">Realtime</span>
-                            <span class="stat-label">Data Automation</span>
-                        </div>
+      /* Scroll Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-                        <div class="stat-item">
-                            <span class="stat-number">Dynamic</span>
-                            <span class="stat-label">Interactive Web App</span>
-                        </div>
+      /* Sidebar Link Active State */
+      .nav-link.active {
+        background-color: #eff6ff;
+        color: #2563eb;
+        border-right: 3px solid #2563eb;
+      }
 
-                        <div class="stat-item">
-                            <span class="stat-number">Integrated</span>
-                            <span class="stat-label">CAD & Database Workflow</span>
-                        </div>
+      /* Hide scrollbar for filter container */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-brand-blue selection:text-white">
+    <!-- Animated Blueprint Background -->
+    <div class="bg-modern-blueprint animate-move-grid"></div>
 
-                    </div>
-
-                    <div class="hero-cta reveal" data-anim="fade-up" data-delay="300">
-                        <a href="https://wa.me/6289698910380?text=Halo%20SIFORTECH%2C%20saya%20ingin%20konsultasikan%20pekerjaan%20saya"
-                            class="btn btn-large btn-primary pulse-btn" target="_blank" rel="noopener noreferrer">
-                            <i class="material-icons left">chat</i>
-                            Konsultasikan Pekerjaan
-                        </a>
-                        <a href="#layanan" class="btn btn-large btn-outline">
-                            <i class="material-icons left">visibility</i>
-                            Lihat Layanan
-                        </a>
-                    </div>
-                </div>
-                <div class="col s12 l4 hide-on-med-and-down hero-visual reveal" data-anim="fade-left">
-                    <div class="floating-cards">
-                        <div class="float-card card-1">
-                            <i class="material-icons">description</i>
-                            <span>Dokumen</span>
-                        </div>
-                        <div class="float-card card-2">
-                            <i class="material-icons">architecture</i>
-                            <span>Gambar</span>
-                        </div>
-                        <div class="float-card card-3">
-                            <i class="material-icons">table_chart</i>
-                            <span>Analisis</span>
-                        </div>
-                        <div class="float-card card-4">
-                            <i class="material-icons">campaign</i>
-                            <span>Proposal</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <a href="#kondisi" class="scroll-arrow">
-                <i class="material-icons">keyboard_arrow_down</i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Kondisi Klien Section -->
-    <section id="kondisi" class="section kondisi-section scrollspy" aria-labelledby="kondisi-title">
-        <div class="container">
-            <div class="section-header center-align reveal" data-anim="fade-up">
-                <span class="section-badge">
-                    <i class="material-icons tiny">help_outline</i>
-                    Situasi yang Sering Dihadapi
-                </span>
-                <h2 id="kondisi-title" class="section-title">Apakah Anda Mengalami Ini?</h2>
-                <p class="section-subtitle">Beberapa kondisi umum yang sering dialami profesional dalam menangani proyek
-                </p>
-            </div>
-
-            <div class="row kondisi-grid">
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="50">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper red lighten-5">
-                                <i class="material-icons red-text">schedule</i>
-                            </div>
-                            <span class="card-title">Waktu Tidak Cukup</span>
-                            <p>Deadline makin dekat tapi dokumen dan gambar teknis belum juga selesai</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="100">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper orange lighten-5">
-                                <i class="material-icons orange-text">error_outline</i>
-                            </div>
-                            <span class="card-title">Hasil Tidak Sesuai Standar</span>
-                            <p>Laporan dan dokumen terkesan asal-asalan, tidak profesional untuk presentasi</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="150">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper purple lighten-5">
-                                <i class="material-icons purple-text">psychology</i>
-                            </div>
-                            <span class="card-title">Fokus Terpecah</span>
-                            <p>Terjebak urusan teknis sehingga tidak bisa fokus pada pengembangan proyek utama</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="200">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper blue lighten-5">
-                                <i class="material-icons blue-text">person_off</i>
-                            </div>
-                            <span class="card-title">Tim Terbatas</span>
-                            <p>Tidak memiliki tenaga ahli khusus untuk handle dokumen dan desain teknis</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="250">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper teal lighten-5">
-                                <i class="material-icons teal-text">repeat</i>
-                            </div>
-                            <span class="card-title">Revisi Berulang Kali</span>
-                            <p>Dokumen sering ditolak dan harus diperbaiki berkali-kali tanpa arah yang jelas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="kondisi-card card reveal" data-anim="fade-up" data-delay="300">
-                        <div class="card-content">
-                            <div class="kondisi-icon-wrapper pink lighten-5">
-                                <i class="material-icons pink-text">trending_down</i>
-                            </div>
-                            <span class="card-title">Efisiensi Menurun</span>
-                            <p>Proses kerja lambat karena harus handle hal teknis di luar keahlian utama</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Peran Jasa Section -->
-    <section id="peran" class="section peran-section scrollspy" aria-labelledby="peran-title">
-        <div class="container">
-            <div class="row valign-wrapper">
-                <div class="col s12 l6 peran-content">
-                    <div class="reveal" data-anim="fade-right">
-                        <span class="section-badge">
-                            <i class="material-icons tiny">groups</i>
-                            Bagaimana Kami Membantu
-                        </span>
-                        <h2 id="peran-title" class="section-title">Partner yang Memahami Kebutuhan Anda</h2>
-                        <p class="peran-desc">
-                            SIFORTECH hadir sebagai extension tim Anda. Kami handle bagian teknis — dokumen,
-                            gambar, dan laporan — sehingga Anda bisa fokus pada inti proyek.
-                        </p>
-                    </div>
-
-                    <ul class="peran-list">
-                        <li class="reveal" data-anim="fade-right" data-delay="100">
-                            <div class="peran-check"><i class="material-icons">check_circle</i></div>
-                            <div class="peran-text"><strong>Mengurus dokumen</strong> administrasi dan teknis proyek
-                                dengan rapi</div>
-                        </li>
-                        <li class="reveal" data-anim="fade-right" data-delay="150">
-                            <div class="peran-check"><i class="material-icons">check_circle</i></div>
-                            <div class="peran-text"><strong>Menyiapkan gambar kerja</strong> dan visualisasi profesional
-                            </div>
-                        </li>
-                        <li class="reveal" data-anim="fade-right" data-delay="200">
-                            <div class="peran-check"><i class="material-icons">check_circle</i></div>
-                            <div class="peran-text"><strong>Membuat laporan</strong> dan presentasi yang rapi dan
-                                informatif</div>
-                        </li>
-                        <li class="reveal" data-anim="fade-right" data-delay="250">
-                            <div class="peran-check"><i class="material-icons">check_circle</i></div>
-                            <div class="peran-text"><strong>Menyediakan data</strong> dan analisis yang terstruktur
-                            </div>
-                        </li>
-                        <li class="reveal" data-anim="fade-right" data-delay="300">
-                            <div class="peran-check"><i class="material-icons">check_circle</i></div>
-                            <div class="peran-text"><strong>Mendukung presentasi</strong> proyek dengan materi visual
-                                berkualitas</div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col s12 l6 reveal" data-anim="fade-left">
-                    <div class="peran-image-wrapper">
-                        <div class="peran-shape shape-1"></div>
-                        <div class="peran-shape shape-2"></div>
-                        <div class="peran-stats-card card z-depth-2">
-                            <div class="stats-card-header">
-                                <i class="material-icons">trending_up</i>
-                                <span>Dampak Kolaborasi</span>
-                            </div>
-                            <div class="stats-items">
-                                <div class="stats-item">
-                                    <div class="stats-icon bg-red-light">
-                                        <i class="material-icons red-text">schedule</i>
-                                    </div>
-                                    <div class="stats-info">
-                                        <span class="stats-value">Lebih Cepat</span>
-                                        <span class="stats-label">Selesaikan pekerjaan teknis</span>
-                                    </div>
-                                </div>
-                                <div class="stats-item">
-                                    <div class="stats-icon bg-blue-light">
-                                        <i class="material-icons blue-text">verified</i>
-                                    </div>
-                                    <div class="stats-info">
-                                        <span class="stats-value">Standar Profesional</span>
-                                        <span class="stats-label">Kualitas output terjamin</span>
-                                    </div>
-                                </div>
-                                <div class="stats-item">
-                                    <div class="stats-icon bg-green-light">
-                                        <i class="material-icons green-text">center_focus_strong</i>
-                                    </div>
-                                    <div class="stats-info">
-                                        <span class="stats-value">Fokus Penuh</span>
-                                        <span class="stats-label">Inti proyek</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Layanan Section -->
-    <section id="layanan" class="section layanan-section scrollspy" aria-labelledby="layanan-title">
-        <div class="container">
-            <div class="section-header center-align reveal" data-anim="fade-up">
-                <span class="section-badge">
-                    <i class="material-icons tiny">build</i>
-                    Solusi yang Kami Tawarkan
-                </span>
-                <h2 id="layanan-title" class="section-title">Layanan Sesuai Kebutuhan Anda</h2>
-                <p class="section-subtitle">Pilih berdasarkan kondisi pekerjaan Anda saat ini</p>
-            </div>
-
-            <!-- Filter Buttons -->
-            <div class="layanan-filter center-align reveal" data-anim="fade-up" data-delay="100" id="layananFilter">
-                <button class="btn-filter active" data-filter="all">Semua</button>
-                <button class="btn-filter" data-filter="administrasi">Administrasi</button>
-                <button class="btn-filter" data-filter="teknis">Teknis</button>
-                <button class="btn-filter" data-filter="otomasi">Otomatisasi</button>
-            </div>
-
-            <!-- Skeleton Loading — 4 cards matching the real card structure -->
-            <div id="layanan-loading" class="layanan-skeleton-wrap" aria-hidden="true">
-                <div class="skeleton-card">
-                    <div class="skeleton-label"></div>
-                    <div class="skeleton-title"></div>
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-text short"></div>
-                    <div class="skeleton-price"></div>
-                    <div class="skeleton-button"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-label"></div>
-                    <div class="skeleton-title"></div>
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-text short"></div>
-                    <div class="skeleton-price"></div>
-                    <div class="skeleton-button"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-label"></div>
-                    <div class="skeleton-title"></div>
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-text short"></div>
-                    <div class="skeleton-price"></div>
-                    <div class="skeleton-button"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-label"></div>
-                    <div class="skeleton-title"></div>
-                    <div class="skeleton-text"></div>
-                    <div class="skeleton-text short"></div>
-                    <div class="skeleton-price"></div>
-                    <div class="skeleton-button"></div>
-                </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="layanan-error" class="layanan-error card-panel center-align" hidden>
-                <i class="material-icons large grey-text">error_outline</i>
-                <h5>Layanan Sedang Diperbarui</h5>
-                <p>Silakan hubungi langsung melalui WhatsApp untuk informasi layanan terbaru</p>
-                <a href="https://wa.me/6289698910380" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                    <i class="material-icons left">chat</i>Hubungi WhatsApp
-                </a>
-            </div>
-
-            <!-- Services Grid — populated by script.js -->
-            <div id="layanan-grid" class="layanan-grid" hidden></div>
-
-            <!-- Pagination -->
-            <div id="layanan-pagination" class="layanan-pagination" hidden>
-                <button class="pagination-btn pagination-prev" data-action="prev" aria-label="Halaman sebelumnya">
-                    <i class="material-icons">chevron_left</i>
-                </button>
-                <div class="pagination-pages" id="paginationPages"></div>
-                <button class="pagination-btn pagination-next" data-action="next" aria-label="Halaman berikutnya">
-                    <i class="material-icons">chevron_right</i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contoh Hasil Section -->
-    <section id="hasil" class="section hasil-section scrollspy" aria-labelledby="hasil-title">
-        <div class="container">
-            <div class="section-header center-align reveal" data-anim="fade-up">
-                <span class="section-badge">
-                    <i class="material-icons tiny">workspace_premium</i>
-                    Kualitas yang Kami Berikan
-                </span>
-                <h2 id="hasil-title" class="section-title">Contoh Hasil Pekerjaan</h2>
-                <p class="section-subtitle">Standar kualitas profesional untuk setiap jenis pekerjaan</p>
-            </div>
-
-            <div class="row hasil-grid">
-                <div class="col s12 m6 l4">
-                    <div class="hasil-card card reveal" data-anim="fade-up" data-delay="50">
-                        <div class="hasil-icon-wrapper">
-                            <div class="hasil-icon-bg">
-                                <i class="material-icons">description</i>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Dokumen Administrasi</span>
-                            <p>Laporan harian, mingguan, dan bulanan dengan format profesional, grafik jelas, siap
-                                presentasi</p>
-                        </div>
-                        <div class="card-action">
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Rapi</span>
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Profesional</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="hasil-card card reveal" data-anim="fade-up" data-delay="100">
-                        <div class="hasil-icon-wrapper">
-                            <div class="hasil-icon-bg hasil-icon-blue">
-                                <i class="material-icons">architecture</i>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Gambar Teknis</span>
-                            <p>Gambar kerja 2D/3D dengan dimensi lengkap, layer terstruktur, siap koordinasi dan
-                                konstruksi</p>
-                        </div>
-                        <div class="card-action">
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Akurat</span>
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Detail</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <div class="hasil-card card reveal" data-anim="fade-up" data-delay="150">
-                        <div class="hasil-icon-wrapper">
-                            <div class="hasil-icon-bg hasil-icon-purple">
-                                <i class="material-icons">table_chart</i>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Analisis Data</span>
-                            <p>Tabel terstruktur dengan formula otomatis, grafik visualisasi, ringkasan insight yang
-                                jelas</p>
-                        </div>
-                        <div class="card-action">
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Terstruktur</span>
-                            <span class="hasil-tag"><i class="material-icons tiny">check</i>Informatif</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="kontak" class="cta-section scrollspy" aria-labelledby="cta-title">
-        <div class="cta-bg-pattern"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m10 offset-m1 l8 offset-l2">
-                    <div class="cta-card card z-depth-3 reveal" data-anim="zoom-in">
-                        <div class="card-content center-align">
-                            <div class="cta-icon-wrapper">
-                                <i class="material-icons">support_agent</i>
-                            </div>
-                            <h2 id="cta-title" class="cta-title">Siap Mengatasi Tumpukan Pekerjaan Teknis?</h2>
-                            <p class="cta-desc">
-                                Ceritakan situasi proyek Anda. Kami akan bantu cari solusi terbaik
-                                tanpa Anda perlu pusing dengan urusan teknis.
-                            </p>
-                            <div class="cta-buttons">
-                                <a href="https://wa.me/6289698910380?text=Halo%20SIFORTECH%2C%20saya%20ingin%20konsultasikan%20pekerjaan%20saya"
-                                    class="btn btn-large btn-cta-white" target="_blank" rel="noopener noreferrer">
-                                    <i class="material-icons left">chat</i>
-                                    Konsultasi Gratis
-                                </a>
-                                <a href="tel:+6289698910380" class="btn btn-large btn-outline-white">
-                                    <i class="material-icons left">phone</i>
-                                    0896-9891-0380
-                                </a>
-                            </div>
-                            <div class="cta-features">
-                                <span class="cta-feature">
-                                    <i class="material-icons tiny">schedule</i>
-                                    Respon 24 jam
-                                </span>
-                                <span class="cta-feature">
-                                    <i class="material-icons tiny">verified</i>
-                                    Konsultasi gratis
-                                </span>
-                                <span class="cta-feature">
-                                    <i class="material-icons tiny">thumb_up</i>
-                                    Tanpa komitmen
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="page-footer" role="contentinfo">
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m6">
-                    <div class="footer-brand">
-                        <a href="/" class="brand-logo" aria-label="SIFORTECH Beranda">
-                            <span class="logo-icon">
-                                <img src="assets/logo/sifortech.svg" alt="sifortech logo" width="40" height="40">
-                            </span>
-                            <span class="logo-text">SIFORTECH</span>
-                        </a>
-                    </div>
-                    <p class="text-footer text-lighten-1">Partner teknis terpercaya untuk proyek Anda. Kami hadir untuk
-                        membuat pekerjaan teknis menjadi lebih mudah dan profesional.</p>
-                </div>
-                <div class="col s12 m6 text-footer">
-                    <h5 class="black-text">Hubungi Kami</h5>
-                    <ul class="footer-contact">
-                        <li>
-                            <a href="https://wa.me/6289698910380" target="_blank" rel="noopener noreferrer"
-                                class="text-lighten-1">
-                                <i class="material-icons left">chat</i>WhatsApp: 0896-9891-0380
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tel:+6289698910380" class="text-lighten-1">
-                                <i class="material-icons left">phone</i>Telepon: 0896-9891-0380
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:hello@sifortech.site" class="text-lighten-1">
-                                <i class="material-icons left">email</i>admin@sifortech.site
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="text-footer container center-align">
-                &copy; 2025 SIFORTECH. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red"
-            href="https://wa.me/6289698910380?text=Halo%20SIFORTECH%2C%20saya%20ingin%20konsultasikan%20pekerjaan%20saya"
-            target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp">
-            <i class="material-icons">chat</i>
+    <!-- SIDEBAR NAVIGATION (Dashboard Style) -->
+    <aside
+      class="fixed left-0 top-0 h-full w-[70px] md:w-[260px] bg-white/90 backdrop-blur-xl border-r border-slate-200 z-50 flex flex-col transition-all duration-300 shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
+    >
+      <!-- Logo -->
+      <div
+        class="h-20 flex items-center justify-center md:justify-start md:px-8 border-b border-slate-100"
+      >
+        <a href="/" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 bg-brand-black rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform"
+          >
+            <img src="/assets/logo/sifortech.svg" width="25" height="25" alt="SIFORTECH">
+          </div>
+          <span
+            class="hidden md:block text-2xl font-display font-bold tracking-tight text-brand-dark"
+          >
+            SIFOR<span class="text-brand-red">TECH</span>
+          </span>
         </a>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="flex-1 py-8 flex flex-col gap-2 px-3 md:px-4">
+        <a
+          href="#hero"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="hero"
+        >
+          <i
+            data-lucide="home"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Beranda</span>
+        </a>
+        <a
+          href="#keunggulan"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="keunggulan"
+        >
+          <i
+            data-lucide="zap"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Kenapa Kami?</span>
+        </a>
+        <a
+          href="#alur"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="alur"
+        >
+          <i
+            data-lucide="git-merge"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Cara Kerja</span>
+        </a>
+        <a
+          href="#katalog"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="katalog"
+        >
+          <i
+            data-lucide="layers"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm"
+            >Katalog Layanan</span
+          >
+        </a>
+        <a
+          href="#faq"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="faq"
+        >
+          <i
+            data-lucide="message-circle-question"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Tanya Jawab</span>
+        </a>
+      </nav>
+
+      <!-- Bottom Action -->
+      <div class="p-3 md:p-6 border-t border-slate-100">
+        <button
+          onclick="contactGeneral()"
+          class="w-full flex items-center justify-center gap-2 p-3 md:py-4 bg-brand-dark text-white rounded-xl hover:bg-brand-blue transition-all shadow-lg hover:shadow-blue-500/25 active:scale-95"
+        >
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span class="hidden md:block font-bold text-sm">Konsultasi WA</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main
+      class="ml-[70px] md:ml-[260px] w-[calc(100%-70px)] md:w-[calc(100%-260px)] min-h-screen"
+    >
+      <!-- HERO SECTION -->
+      <section
+        id="hero"
+        class="relative min-h-[90vh] flex items-center px-6 md:px-16 lg:px-24 pt-20 pb-12"
+      >
+        <div
+          class="max-w-6xl mx-auto w-full flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20"
+        >
+          <!-- Text Content -->
+          <div class="w-full lg:w-1/2 flex flex-col reveal active">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-brand-blue text-xs font-bold mb-6 w-max"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"
+              ></span>
+              JASA IT & ENGINEERING
+            </div>
+
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-brand-dark leading-[1.1] tracking-tight mb-6"
+            >
+              Fokus ke Bisnis,<br />
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400"
+                >Teknisnya Biar Kami yang Urus.</span
+              >
+            </h1>
+
+            <p
+              class="text-base md:text-lg text-slate-600 leading-relaxed mb-8 max-w-lg"
+            >
+              Nggak perlu pusing mikirin draft CAD, nyusun proposal, atau olah
+              data ribet. Delegasikan ke tim SiforTech biar kamu bisa fokus
+              ngejar target proyek utama tanpa hambatan administratif.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                onclick="
+                  document
+                    .getElementById('katalog')
+                    .scrollIntoView({ behavior: 'smooth' })
+                "
+                class="px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 active:scale-95"
+              >
+                Lihat Layanan <i data-lucide="arrow-down" class="w-5 h-5"></i>
+              </button>
+              <button
+                onclick="contactGeneral()"
+                class="px-8 py-4 bg-white border border-slate-200 text-brand-dark rounded-xl font-bold hover:border-brand-blue hover:text-brand-blue transition-all flex items-center justify-center gap-2 active:scale-95"
+              >
+                Tanya Dulu (WA)
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Visual Graphic -->
+          <div
+            class="w-full lg:w-1/2 relative h-[400px] flex items-center justify-center reveal active"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-blue-100/50 to-transparent rounded-full blur-3xl"
+            ></div>
+            <div
+              class="relative w-full max-w-[400px] aspect-square animate-float"
+            >
+              <!-- Abstract Dashboard/Blueprint Elements -->
+              <div
+                class="absolute top-10 left-10 w-48 h-32 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-20"
+              >
+                <div class="w-1/2 h-3 bg-slate-100 rounded-full mb-4"></div>
+                <div class="space-y-2">
+                  <div class="w-full h-2 bg-blue-50 rounded-full"></div>
+                  <div class="w-4/5 h-2 bg-blue-50 rounded-full"></div>
+                  <div class="w-full h-2 bg-blue-50 rounded-full"></div>
+                </div>
+              </div>
+              <div
+                class="absolute bottom-10 right-10 w-56 h-40 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl border border-blue-100/50 p-5 z-30"
+              >
+                <div class="flex justify-between items-center mb-4">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-brand-blue"
+                  >
+                    <i data-lucide="box" class="w-4 h-4"></i>
+                  </div>
+                  <span
+                    class="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-md"
+                    >LOD 300</span
+                  >
+                </div>
+                <div
+                  class="w-full h-16 bg-slate-50 rounded-lg border border-dashed border-slate-200 flex items-center justify-center"
+                >
+                  <span class="text-xs text-slate-400">Rendering...</span>
+                </div>
+              </div>
+              <!-- Central Circle Element -->
+              <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-[1px] border-dashed border-brand-blue/30 rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="w-48 h-48 border-[1px] border-brand-blue/20 rounded-full flex items-center justify-center"
+                >
+                  <div
+                    class="w-32 h-32 bg-gradient-to-tr from-brand-blue to-blue-400 rounded-full shadow-[0_0_40px_rgba(37,99,235,0.3)] opacity-90"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KEUNGGULAN SECTION -->
+      <section id="keunggulan" class="py-20 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center md:text-left mb-16 reveal">
+            <span
+              class="text-brand-blue font-bold tracking-wider text-sm uppercase"
+              >Kenapa Memilih Kami?</span
+            >
+            <h2
+              class="text-3xl md:text-4xl font-display font-bold text-brand-dark mt-2"
+            >
+              Partner Teknis Andalanmu.
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-3xl reveal">
+              <div
+                class="w-14 h-14 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center mb-6"
+              >
+                <i data-lucide="sliders" class="w-7 h-7"></i>
+              </div>
+              <h3 class="text-xl font-bold text-brand-dark mb-3">
+                Solusi Pas Takaran
+              </h3>
+              <p class="text-slate-600 leading-relaxed text-sm">
+                Hasil kerja kita sesuaikan murni sama kebutuhan riil dan budget
+                proyekmu. Nggak ada fitur sisipan atau format lebay yang bikin
+                harga bengkak.
+              </p>
+            </div>
+
+            <div
+              class="glass-card p-8 rounded-3xl reveal"
+              style="transition-delay: 100ms"
+            >
+              <div
+                class="w-14 h-14 bg-red-50 text-brand-red rounded-2xl flex items-center justify-center mb-6"
+              >
+                <i data-lucide="zap" class="w-7 h-7"></i>
+              </div>
+              <h3 class="text-xl font-bold text-brand-dark mb-3">
+                Biar Cepat Jalan
+              </h3>
+              <p class="text-slate-600 leading-relaxed text-sm">
+                Birokrasi dipangkas habis. Begitu brief teknis udah jelas, kita
+                langsung eksekusi kerjaan biar timeline proyek kamu aman
+                terkendali.
+              </p>
+            </div>
+
+            <div
+              class="glass-card p-8 rounded-3xl reveal"
+              style="transition-delay: 200ms"
+            >
+              <div
+                class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"
+              >
+                <i data-lucide="shield-check" class="w-7 h-7"></i>
+              </div>
+              <h3 class="text-xl font-bold text-brand-dark mb-3">
+                Harga Masuk Akal
+              </h3>
+              <p class="text-slate-600 leading-relaxed text-sm">
+                Sistem bayar yang adil. Kamu cuma bayar buat nilai dan volume
+                yang beneran kamu terima. Transparan di awal, nggak ada biaya
+                kaget di akhir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALUR KERJA SECTION -->
+      <section
+        id="alur"
+        class="py-20 px-6 md:px-16 lg:px-24 bg-white/50 border-y border-slate-200"
+      >
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16 reveal">
+            <span
+              class="text-brand-blue font-bold tracking-wider text-sm uppercase"
+              >Alur Kerja</span
+            >
+            <h2
+              class="text-3xl md:text-4xl font-display font-bold text-brand-dark mt-2"
+            >
+              Gini Cara Kita Kerja Bareng.
+            </h2>
+            <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
+              Langkah jelas dari awal ngobrol sampai serah terima file matang.
+              Simpel, santai, nggak pakai drama.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <!-- Connector line for desktop -->
+            <div
+              class="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-slate-100 z-0"
+            ></div>
+
+            <div class="relative z-10 text-center reveal">
+              <div
+                class="w-20 h-20 mx-auto bg-white border-2 border-slate-100 rounded-2xl shadow-sm flex items-center justify-center text-brand-dark text-2xl font-bold mb-6 hover:border-brand-blue transition-colors"
+              >
+                1
+              </div>
+              <h4 class="text-lg font-bold text-brand-dark mb-2">
+                Ngobrol Santai
+              </h4>
+              <p class="text-sm text-slate-600">
+                Chat via WA, ceritain butuhnya apa, kendalanya di mana, dan
+                target kelarnya kapan.
+              </p>
+            </div>
+
+            <div
+              class="relative z-10 text-center reveal"
+              style="transition-delay: 100ms"
+            >
+              <div
+                class="w-20 h-20 mx-auto bg-white border-2 border-slate-100 rounded-2xl shadow-sm flex items-center justify-center text-brand-dark text-2xl font-bold mb-6 hover:border-brand-red transition-colors"
+              >
+                2
+              </div>
+              <h4 class="text-lg font-bold text-brand-dark mb-2">
+                Deal Penawaran
+              </h4>
+              <p class="text-sm text-slate-600">
+                Kami cek info proyek, lalu kasih estimasi waktu pengerjaan dan
+                biaya yang transparan.
+              </p>
+            </div>
+
+            <div
+              class="relative z-10 text-center reveal"
+              style="transition-delay: 200ms"
+            >
+              <div
+                class="w-20 h-20 mx-auto bg-brand-blue border-2 border-brand-blue rounded-2xl shadow-lg shadow-blue-500/20 flex items-center justify-center text-white text-2xl font-bold mb-6"
+              >
+                3
+              </div>
+              <h4 class="text-lg font-bold text-brand-dark mb-2">Pengerjaan</h4>
+              <p class="text-sm text-slate-600">
+                Tim eksekusi jalan. Kita bakal kasih update progres berkala
+                sampai tuntas.
+              </p>
+            </div>
+
+            <div
+              class="relative z-10 text-center reveal"
+              style="transition-delay: 300ms"
+            >
+              <div
+                class="w-20 h-20 mx-auto bg-brand-dark border-2 border-brand-dark rounded-2xl shadow-lg flex items-center justify-center text-white text-2xl font-bold mb-6"
+              >
+                4
+              </div>
+              <h4 class="text-lg font-bold text-brand-dark mb-2">
+                Serah Terima
+              </h4>
+              <p class="text-sm text-slate-600">
+                Cek bareng hasil akhir, revisi minor kalau perlu, lalu file
+                master utuh dikirim.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KATALOG LAYANAN -->
+      <section id="katalog" class="py-20 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal"
+          >
+            <div>
+              <span
+                class="text-brand-blue font-bold tracking-wider text-sm uppercase"
+                >Katalog</span
+              >
+              <h2
+                class="text-3xl md:text-4xl font-display font-bold text-brand-dark mt-2"
+              >
+                Layanan Kami.
+              </h2>
+            </div>
+
+            <!-- Modern Pill Filters -->
+            <div
+              class="flex overflow-x-auto no-scrollbar gap-2 pb-2 md:pb-0 w-full md:w-auto"
+            >
+              <button
+                class="filter-btn active px-6 py-2.5 rounded-full font-bold text-sm bg-brand-dark text-white shadow-md transition-all whitespace-nowrap"
+                data-filter="all"
+              >
+                Semua
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="dokumen"
+              >
+                Dokumen & Proposal
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="cad"
+              >
+                Drafting & BIM
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="data"
+              >
+                Olah Data
+              </button>
+            </div>
+          </div>
+
+          <div id="servicesList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Services injected by JS -->
+          </div>
+
+          <div
+            id="emptyState"
+            class="hidden flex-col items-center justify-center py-20 text-center"
+          >
+            <i
+              data-lucide="folder-search"
+              class="w-16 h-16 text-slate-300 mb-4"
+            ></i>
+            <p class="font-medium text-slate-500">
+              Layanan tidak ditemukan untuk kategori ini.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section
+        id="faq"
+        class="py-20 px-6 md:px-16 lg:px-24 bg-white/50 border-t border-slate-200"
+      >
+        <div class="max-w-4xl mx-auto reveal">
+          <div class="text-center mb-12">
+            <span
+              class="text-brand-blue font-bold tracking-wider text-sm uppercase"
+              >Knowledge Base</span
+            >
+            <h2
+              class="text-3xl md:text-4xl font-display font-bold text-brand-dark mt-2"
+            >
+              Yang Sering Ditanyain.
+            </h2>
+          </div>
+
+          <div class="space-y-4">
+            <details
+              class="group bg-white border border-slate-200 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex justify-between items-center p-6 cursor-pointer font-bold text-brand-dark select-none"
+              >
+                Kenapa nggak ada list harga pasti di web?
+                <span
+                  class="transition group-open:rotate-180 bg-slate-50 p-2 rounded-full text-slate-400 group-hover:text-brand-blue group-open:text-brand-blue"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </span>
+              </summary>
+              <div
+                class="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4"
+              >
+                Biar adil buat kamu. Harga kita hitung setelah tahu detail
+                kebutuhanmu. Kadang paketan kaku malah bikin kemahalan buat
+                proyek yang simpel. Mending kita obrolin dulu spesifikasi dan
+                tingkat kesulitannya, baru kita kasih estimasi angka yang pas
+                dan transparan.
+              </div>
+            </details>
+
+            <details
+              class="group bg-white border border-slate-200 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex justify-between items-center p-6 cursor-pointer font-bold text-brand-dark select-none"
+              >
+                Nanti file masternya dikasih nggak?
+                <span
+                  class="transition group-open:rotate-180 bg-slate-50 p-2 rounded-full text-slate-400 group-hover:text-brand-blue group-open:text-brand-blue"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </span>
+              </summary>
+              <div
+                class="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4"
+              >
+                Pasti dapet dong. File mentah kayak DWG (AutoCAD), RVT (Revit),
+                XLS (Excel), atau DOCX (Word) bakal kita kirim utuh setelah
+                urusan administrasi kelar. Ini penting biar kamu dan tim gampang
+                kalau mau lanjut edit-edit sendiri ke depannya tanpa
+                ketergantungan sama kita.
+              </div>
+            </details>
+
+            <details
+              class="group bg-white border border-slate-200 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex justify-between items-center p-6 cursor-pointer font-bold text-brand-dark select-none"
+              >
+                Aman nggak nih data internal proyek saya?
+                <span
+                  class="transition group-open:rotate-180 bg-slate-50 p-2 rounded-full text-slate-400 group-hover:text-brand-blue group-open:text-brand-blue"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </span>
+              </summary>
+              <div
+                class="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4"
+              >
+                Sangat aman. Privasi data klien itu harga mati buat SiforTech.
+                Kalau memang proyeknya sensitif banget atau bawa rahasia
+                perusahaan, kita siap sedia buat tanda tangan surat perjanjian
+                kerahasiaan (NDA) sebelum kamu serahin file teknisnya ke kita.
+              </div>
+            </details>
+
+            <details
+              class="group bg-white border border-slate-200 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex justify-between items-center p-6 cursor-pointer font-bold text-brand-dark select-none"
+              >
+                Berapa lama sih biasanya proses pengerjaannya?
+                <span
+                  class="transition group-open:rotate-180 bg-slate-50 p-2 rounded-full text-slate-400 group-hover:text-brand-blue group-open:text-brand-blue"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </span>
+              </summary>
+              <div
+                class="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4"
+              >
+                Tergantung tingkat kerumitan proyeknya. Buat drafting CAD simpel
+                atau ngerapihin data Excel standar, biasanya 2-3 hari juga udah
+                kelar. Tapi kalau butuh BIM Modeling detail (LOD 300+) atau
+                Pitch Deck B2B yang kompleks, kita butuh waktu ekstra biar
+                hasilnya matang. Yang pasti, timeline-nya bakal kita sepakati
+                bareng di awal sebelum deal.
+              </div>
+            </details>
+
+            <details
+              class="group bg-white border border-slate-200 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary
+                class="flex justify-between items-center p-6 cursor-pointer font-bold text-brand-dark select-none"
+              >
+                Kalau nanti ada revisi, bakal disuruh bayar lagi nggak?
+                <span
+                  class="transition group-open:rotate-180 bg-slate-50 p-2 rounded-full text-slate-400 group-hover:text-brand-blue group-open:text-brand-blue"
+                >
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </span>
+              </summary>
+              <div
+                class="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4"
+              >
+                Tenang, kita kasih garansi revisi minor 2x tanpa tambahan biaya,
+                selama masih sesuai sama brief dan kesepakatan awal kita. Tapi,
+                kalau tiba-tiba ada perubahan *scope* kerjaan yang lumayan
+                drastis di tengah jalan (misal: minta rombak desain total dari
+                nol), nah itu baru kita hitung ulang. Fair, kan?
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="bg-brand-dark py-12 px-6 md:px-16 lg:px-24">
+        <div
+          class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left"
+        >
+          <div>
+            <span
+              class="text-2xl font-display font-bold text-white tracking-tight"
+            >
+              SIFOR<span class="text-brand-blue">TECH</span>
+            </span>
+            <p class="text-slate-400 text-sm mt-2 max-w-sm">
+              Partner teknis terpercaya untuk proyek Anda. Kami hadir untuk membuat pekerjaan teknis menjadi lebih mudah dan profesional.
+            </p>
+          </div>
+          <div
+            class="flex flex-col md:flex-row items-center gap-6 text-slate-400 text-sm"
+          >
+            <span class="flex items-center gap-2"
+              ><i data-lucide="map-pin" class="w-4 h-4 text-brand-blue"></i>
+              Indragiri Hilir, Riau</span
+            >
+            <span class="flex items-center gap-2"
+              ><i data-lucide="phone" class="w-4 h-4 text-brand-blue"></i> +62
+              896-1386-4000</span
+            >
+          </div>
+        </div>
+        <div
+          class="max-w-6xl mx-auto mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500"
+        >
+          &copy; 2026 SIFORTECH. All systems operational.
+        </div>
+      </footer>
+    </main>
+
+    <!-- FLOATING ACTION BUTTON (WA) -->
+    <button
+      onclick="contactGeneral()"
+      class="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:-translate-y-1 transition-all group animate-pulse-soft"
+    >
+      <i data-lucide="message-circle" class="w-6 h-6"></i>
+      <!-- Tooltip -->
+      <span
+        class="absolute right-full mr-4 bg-white text-brand-dark text-xs font-bold py-2 px-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap"
+      >
+        Halo, mau diskusi?
+      </span>
+    </button>
+
+    <!-- MODAL DRAWER (SIDE PANEL DETAIL) -->
+    <div
+      id="drawerOverlay"
+      class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300"
+      onclick="closeArticle()"
+    ></div>
+    <div
+      id="sideDrawer"
+      class="fixed top-0 right-0 h-full w-full md:w-[500px] bg-white z-[70] transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl"
+    >
+      <div
+        class="flex items-center justify-between p-6 border-b border-slate-100"
+      >
+        <div
+          id="drawerBadge"
+          class="text-xs font-bold text-brand-blue bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider"
+        ></div>
+        <button
+          onclick="closeArticle()"
+          class="p-2 text-slate-400 hover:text-brand-red bg-slate-50 hover:bg-red-50 rounded-full transition-colors"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-8 overflow-y-auto flex-grow" id="drawerBody">
+        <h2
+          id="drawerTitle"
+          class="text-2xl font-display font-bold text-brand-dark mb-6 leading-tight"
+        ></h2>
+
+        <div
+          id="drawerArticle"
+          class="prose prose-sm prose-slate max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:text-brand-dark prose-p:text-slate-600 prose-p:leading-relaxed prose-li:text-slate-600 prose-strong:text-brand-blue"
+        >
+          <!-- Content goes here -->
+        </div>
+      </div>
+      <div class="p-6 border-t border-slate-100 bg-slate-50">
+        <a
+          id="drawerWaBtn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full py-4 bg-brand-dark text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-brand-blue shadow-lg transition-all active:scale-95"
+        >
+          Tanya Detail Jasa Ini <i data-lucide="send" class="w-4 h-4"></i>
+        </a>
+      </div>
     </div>
 
-    <!-- Materialize JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-    <!-- Custom JS -->
-    <script src="dist/js/script.js" defer></script>
-</body>
+    <script>
+      const WA_NUMBER = "6289613864000";
 
+      const rawServices = [
+        {
+          name: "Laporan & Administrasi",
+          desc: "Bikin laporan harian/mingguan sampai format manajerial yang rapi dan siap presentasi.",
+          message:
+            "Halo SiforTech, saya mau tanya soal jasa pembuatan Laporan/Administrasi.",
+          packageLevel: "BASIC - LENGKAP",
+          category: "dokumen",
+          icon: "file-text",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Nggak perlu pusing lagi ngurusin format laporan yang berantakan. Tim kami siap bantu nyusun laporan harian, mingguan, atau laporan manajemen supaya kelihatan profesional dan gampang dibaca atasan atau klien.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic:</strong> Cocok buat laporan harian/mingguan yang simpel dan butuh cepet selesai.</li><li><strong>Standar:</strong> Laporan udah ditambahin grafik dan visual data. Pas banget buat materi evaluasi.</li><li><strong>Lengkap:</strong> Paket terima beres. Laporannya detail, ada tabel analisis, dan dapet template master buat dipakai lagi nanti.</li></ul><p><em>Tenang, semua data internal perusahaan kamu dijamin kerahasiaannya.</em></p>",
+        },
+        {
+          name: "Pembuatan Proposal",
+          desc: "Nyusun proposal proyek atau bisnis yang tajam, meyakinkan, dan enak dibaca.",
+          message: "Halo SiforTech, saya butuh bantuan buat bikin Proposal.",
+          packageLevel: "PITCH DECK - B2B",
+          category: "dokumen",
+          icon: "briefcase",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Proposal yang tembus itu kuncinya di struktur dan bahasa yang fokus ke solusi. Kami bantu susun narasinya supaya lebih meyakinkan klien atau partner bisnis buat ngasih lampu hijau.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic:</strong> Proposal simpel yang langsung <i>to the point</i> bahas masalah dan solusi.</li><li><strong>Standar:</strong> Proposal lengkap dengan tambahan infografis biar klien nggak bosen bacanya.</li><li><strong>Lengkap:</strong> Paket buat Pitch Deck profesional. Isinya detail, ada hitung-hitungan budget (ROI), dan desain presentasinya udah rapi.</li></ul>",
+        },
+        {
+          name: "Drafting AutoCAD 2D/3D",
+          desc: "Jasa gambar kerja (CAD) presisi, layer rapi, siap pakai buat acuan lapangan.",
+          message: "Halo SiforTech, saya mau tanya jasa Drafting AutoCAD.",
+          packageLevel: "BASIC - AS BUILT",
+          category: "cad",
+          icon: "pen-tool",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Gambar AutoCAD nggak cuma harus bagus, tapi garis dan <i>layer</i>-nya harus standar biar gampang dibaca mandor di lapangan. Tim kami ngerjain drafting dengan rapi dan presisi tinggi.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic:</strong> Bikin denah dasar atau layout awal buat gambaran kasar proyek.</li><li><strong>Standar:</strong> Gambar kerja yang lebih detail, layer dipisah, cocok buat koordinasi tim antar disiplin.</li><li><strong>Komplit:</strong> Bikin Shop Drawing atau As-Built Drawing lengkap sama dimensi, elevasi, keterangan material, dan siap di-print.</li></ul>",
+        },
+        {
+          name: "BIM Modeling (Revit)",
+          desc: "Pemodelan 3D pintar buat ngecek potensi clash antar elemen sebelum dibangun beneran.",
+          message: "Halo SiforTech, saya mau diskusi soal jasa BIM Modeling.",
+          packageLevel: "LOD 100 - 400",
+          category: "cad",
+          icon: "box",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Biar nggak ada kejadian pipa nabrak balok beton pas udah dibangun, mending kita simulasiin dulu pakai BIM 3D. Jauh lebih aman, dan hemat biaya bongkar-pasang.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic (LOD 100-200):</strong> Bikin bentuk geometri kasar bangunannya aja buat gambaran massing awal.</li><li><strong>Standar (LOD 300):</strong> Gambar struktur dan arsitektur presisi, pas buat ngecek koordinasi posisi.</li><li><strong>Komplit (LOD 350-400):</strong> Model 3D super detail gabungan Arsitektur, Struktur, dan MEP. Siap dipakai buat ngitung volume (Take off).</li></ul>",
+        },
+        {
+          name: "Pengolahan Data Excel",
+          desc: "Ngerapihin data mentah ribuan baris jadi tabel pivot atau dashboard otomatis.",
+          message:
+            "Halo SiforTech, saya butuh bantuan soal Pengolahan Data Excel.",
+          packageLevel: "PIVOT - DASHBOARD",
+          category: "data",
+          icon: "bar-chart-3",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Pusing ngeliat ribuan baris data numpuk? Sini kami rapihin. Dari cuma bikin pivot table biasa sampai nge-build dashboard otomatis pakai rumus advanced.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic:</strong> Ngerapihin format berantakan, bikin tabel simpel, dan rekap data operasional harian.</li><li><strong>Standar:</strong> Tambahan grafik interaktif biar datanya enak dilihat pas meeting bulanan.</li><li><strong>Lengkap:</strong> Bikin Dashboard interaktif otomatis pakai logika rumus kompleks (Index Match, XLOOKUP) atau sedikit Macro.</li></ul>",
+        },
+        {
+          name: "Pemetaan & Analisis GIS",
+          desc: "Bikin peta digital dan analisis tata ruang dari data mentah koordinat lapangan.",
+          message: "Halo SiforTech, saya butuh jasa Pemetaan GIS.",
+          packageLevel: "THEMATIC - SPATIAL",
+          category: "data",
+          icon: "map",
+          article:
+            "<h3>Gambaran Layanan</h3><p>Ubah angka koordinat mentah Anda jadi visual peta digital (GIS) yang informatif. Dari plot lokasi sederhana sampai analisis kesesuaian lahan tingkat lanjut.</p><h3>Pilihan Paket:</h3><ul><li><strong>Basic:</strong> Bikin peta dasar (titik, garis, poligon) buat nunjukin letak lokasi administratif.</li><li><strong>Standar:</strong> Peta Tematik buat presentasi distribusi data aset atau kependudukan berdasar warna.</li><li><strong>Komplit:</strong> Analisis spasial mendalam (overlay, buffer) sampai bikin peta Master Plan skala luas.</li></ul>",
+        },
+      ];
+
+      let currentFilter = "all";
+      const listContainer = document.getElementById("servicesList");
+      const emptyState = document.getElementById("emptyState");
+      const sideDrawer = document.getElementById("sideDrawer");
+      const drawerOverlay = document.getElementById("drawerOverlay");
+
+      // Render Katalog Layanan
+      const renderServices = () => {
+        const filtered = rawServices.filter(
+          (item) => currentFilter === "all" || item.category === currentFilter,
+        );
+        listContainer.innerHTML = "";
+
+        if (filtered.length === 0) {
+          emptyState.classList.remove("hidden");
+          emptyState.classList.add("flex");
+        } else {
+          emptyState.classList.add("hidden");
+          emptyState.classList.remove("flex");
+
+          filtered.forEach((service, index) => {
+            const card = document.createElement("div");
+            card.className =
+              "glass-card p-6 md:p-8 rounded-3xl cursor-pointer group reveal active";
+            card.onclick = () => openArticle(service);
+            card.innerHTML = `
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                                <i data-lucide="${service.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-bold tracking-wider text-slate-400 bg-slate-50 border border-slate-100 px-3 py-1 rounded-full uppercase group-hover:border-brand-blue/30">${service.packageLevel}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-2 group-hover:text-brand-blue transition-colors">${service.name}</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-6 line-clamp-2">${service.desc}</p>
+                        <div class="flex items-center text-sm font-bold text-brand-blue gap-2 group-hover:translate-x-2 transition-transform">
+                            Lihat Detail <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    `;
+            listContainer.appendChild(card);
+          });
+        }
+        lucide.createIcons();
+      };
+
+      // Buka Panel Detail
+      window.openArticle = (service) => {
+        document.getElementById("drawerTitle").textContent = service.name;
+        document.getElementById("drawerBadge").textContent =
+          "Pilihan: " + service.packageLevel;
+        document.getElementById("drawerArticle").innerHTML = service.article;
+        document.getElementById("drawerWaBtn").href =
+          `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(service.message)}`;
+
+        drawerOverlay.classList.remove("opacity-0", "pointer-events-none");
+        sideDrawer.classList.remove("translate-x-full");
+        document.body.style.overflow = "hidden";
+        lucide.createIcons();
+      };
+
+      // Tutup Panel Detail
+      window.closeArticle = () => {
+        drawerOverlay.classList.add("opacity-0", "pointer-events-none");
+        sideDrawer.classList.add("translate-x-full");
+        document.body.style.overflow = "";
+      };
+
+      // Logika Filter Katalog
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.onclick = (e) => {
+          // Reset semua styling button
+          document.querySelectorAll(".filter-btn").forEach((b) => {
+            b.classList.remove(
+              "bg-brand-dark",
+              "text-white",
+              "border-transparent",
+            );
+            b.classList.add("bg-white", "text-slate-600", "border-slate-200");
+          });
+
+          // Set button aktif
+          btn.classList.add(
+            "bg-brand-dark",
+            "text-white",
+            "border-transparent",
+          );
+          btn.classList.remove(
+            "bg-white",
+            "text-slate-600",
+            "border-slate-200",
+          );
+
+          currentFilter = btn.dataset.filter;
+          renderServices();
+        };
+      });
+
+      // CTA General
+      const contactGeneral = () =>
+        window.open(
+          `https://wa.me/${WA_NUMBER}?text=Halo SiforTech, saya mau konsultasi jasa.`,
+          "_blank",
+        );
+
+      // Scroll Observer untuk Animasi
+      const observeElements = () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                // Nggak usah unobserve kalau mau bisa animasi ulang pas discroll bolak-balik,
+                // Tapi standar biasanya di unobserve biar ringan.
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => observer.observe(el));
+      };
+
+      // Active State Sidebar pas di-scroll
+      const observeSections = () => {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-item");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                navLinks.forEach((link) => {
+                  link.classList.remove(
+                    "active",
+                    "bg-blue-50",
+                    "text-brand-blue",
+                    "border-r-4",
+                    "border-brand-blue",
+                  );
+                  link.classList.add("text-slate-500");
+
+                  if (link.dataset.target === entry.target.id) {
+                    link.classList.add(
+                      "active",
+                      "bg-blue-50",
+                      "text-brand-blue",
+                      "border-r-4",
+                      "border-brand-blue",
+                    );
+                    link.classList.remove("text-slate-500");
+                  }
+                });
+              }
+            });
+          },
+          { rootMargin: "-50% 0px -50% 0px" },
+        ); // Trigger pas seksi ada di tengah layar
+
+        sections.forEach((sec) => observer.observe(sec));
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderServices();
+        lucide.createIcons();
+        setTimeout(observeElements, 100); // delay dikit biar DOM siap
+        observeSections();
+      });
+    </script>
+  </body>
 </html>
