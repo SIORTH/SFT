@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+    <title>403 - Akses Ditolak | SIFORTECH</title>
+    <meta
+      name="description"
+      content="Halaman komponen internal SIFORTECH tidak dapat diakses langsung melalui URL."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/dist/js/config.js"></script>
+    <link href="/dist/css/style.css" rel="stylesheet" />
+  </head>
+  <body
+    class="min-h-screen overflow-hidden bg-slate-950 font-sans antialiased selection:bg-brand-blue selection:text-white"
+  >
+    <div class="bg-modern-blueprint animate-move-grid opacity-20"></div>
+
+    <main
+      class="relative flex min-h-screen items-center justify-center px-6 py-12"
+    >
+      <div
+        class="glass-card relative w-full max-w-xl overflow-hidden rounded-[32px] border border-white/10 bg-white/95 p-8 shadow-2xl md:p-12"
+      >
+        <div
+          class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand-blue/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-brand-red/10 blur-3xl"
+        ></div>
+
+        <div class="relative text-center">
+          <div
+            class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-red-50 text-brand-red shadow-lg shadow-red-500/10"
+          >
+            <i data-lucide="shield-x" class="h-10 w-10"></i>
+          </div>
+
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-brand-red"
+          >
+            <span class="h-2 w-2 rounded-full bg-brand-red"></span>
+            403 - Sistem Tolak Bala
+          </span>
+
+          <h1
+            class="mt-6 text-4xl font-display font-bold tracking-tight text-brand-dark md:text-5xl"
+          >
+            Hayo, Salah Kamar!
+          </h1>
+          <p
+            class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-600 md:text-base"
+          >
+            Wah, kamu nyasar terlalu jauh sampai ke ruang ganti sistem nih!
+            Komponen ini emang pemalu dan nggak dirancang buat tampil sendirian.
+            Yuk, balik ke beranda aja biar kelihatan wujud aslinya.
+          </p>
+
+          <button
+            type="button"
+            onclick="window.location.replace('/')"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-dark px-6 py-4 font-bold text-white shadow-lg transition-all hover:bg-brand-blue active:scale-95"
+          >
+            <i data-lucide="arrow-left" class="h-5 w-5"></i>
+            Kembali ke Beranda
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

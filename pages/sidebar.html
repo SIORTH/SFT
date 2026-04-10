@@ -1,0 +1,99 @@
+<script>if (window.location.pathname.includes('/pages/')) { window.location.replace('/pages/403.html'); }</script>
+<aside
+      class="fixed left-0 top-0 h-full w-[70px] md:w-[260px] bg-white/90 backdrop-blur-xl border-r border-slate-200 z-50 flex flex-col transition-all duration-300 shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
+    >
+      <!-- Logo -->
+      <div
+        class="h-20 flex items-center justify-center md:justify-start md:px-8 border-b border-slate-100"
+      >
+        <a href="/" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 bg-brand-black rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform"
+          >
+            <img
+              src="/assets/logo/sifortech.svg"
+              width="25"
+              height="25"
+              alt="SIFORTECH"
+            />
+          </div>
+          <span
+            class="hidden md:block text-2xl font-display font-bold tracking-tight text-brand-dark"
+          >
+            SIFOR<span class="text-brand-red">TECH</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="flex-1 py-8 flex flex-col gap-2 px-3 md:px-4">
+        <a
+          href="#hero"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="hero"
+        >
+          <i
+            data-lucide="home"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Beranda</span>
+        </a>
+        <a
+          href="#keunggulan"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="keunggulan"
+        >
+          <i
+            data-lucide="zap"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Kenapa Kami?</span>
+        </a>
+        <a
+          href="#alur"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="alur"
+        >
+          <i
+            data-lucide="git-merge"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Cara Kerja</span>
+        </a>
+        <a
+          href="#katalog"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="katalog"
+        >
+          <i
+            data-lucide="layers"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm"
+            >Katalog Layanan</span
+          >
+        </a>
+        <a
+          href="#faq"
+          class="nav-item flex items-center justify-center md:justify-start gap-4 p-3 md:px-4 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-brand-dark transition-all group"
+          data-target="faq"
+        >
+          <i
+            data-lucide="message-circle-question"
+            class="w-6 h-6 group-hover:text-brand-blue transition-colors"
+          ></i>
+          <span class="hidden md:block font-medium text-sm">Tanya Jawab</span>
+        </a>
+      </nav>
+
+      <!-- Bottom Action -->
+      <div class="p-3 md:p-6 border-t border-slate-100">
+        <button
+          onclick="contactGeneral()"
+          class="w-full flex items-center justify-center gap-2 p-3 md:py-4 bg-brand-dark text-white rounded-xl hover:bg-brand-blue transition-all shadow-lg hover:shadow-blue-500/25 active:scale-95"
+        >
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span class="hidden md:block font-bold text-sm">Konsultasi WA</span>
+        </button>
+      </div>
+    </aside>

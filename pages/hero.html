@@ -1,0 +1,115 @@
+<script>
+  if (window.location.pathname.includes("/pages/")) {
+    window.location.replace("/pages/403.html");
+  }
+</script>
+<section
+  id="hero"
+  class="relative min-h-[90vh] flex items-center px-6 md:px-16 lg:px-24 pt-20 pb-12"
+>
+  <div
+    class="max-w-6xl mx-auto w-full flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20"
+  >
+    <!-- Text Content -->
+    <div class="w-full lg:w-1/2 flex flex-col reveal active">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-brand-blue text-xs font-bold mb-6 w-max"
+      >
+        <span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span>
+        SOLUSI DRAFTING & DATA
+      </div>
+
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-brand-dark leading-[1.1] tracking-tight mb-6"
+      >
+        Fokus Proyeknya,<br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-blue-400"
+          >Kami Handle.</span
+        >
+      </h1>
+
+      <p
+        class="text-base md:text-lg text-slate-600 leading-relaxed mb-8 max-w-lg"
+      >
+        Waktumu terlalu berharga buat nyangkut di urusan drafting atau olah
+        data. Serahin beban teknisnya ke SIFORTECH, biar kamu bisa gaspol ngejar
+        target proyek tanpa pusing mikirin printilan admin.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          onclick="
+            document
+              .getElementById('katalog')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+          class="px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 active:scale-95"
+        >
+          Lihat Layanan <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        </button>
+        <button
+          onclick="contactGeneral()"
+          class="px-8 py-4 bg-white border border-slate-200 text-brand-dark rounded-xl font-bold hover:border-brand-blue hover:text-brand-blue transition-all flex items-center justify-center gap-2 active:scale-95"
+        >
+          Tanya Dulu (WA)
+          <i data-lucide="message-square" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Visual Graphic -->
+    <div
+      class="w-full lg:w-1/2 relative h-[400px] flex items-center justify-center reveal active"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-blue-100/50 to-transparent rounded-full blur-3xl"
+      ></div>
+      <div class="relative w-full max-w-[400px] aspect-square animate-float">
+        <!-- Abstract Dashboard/Blueprint Elements -->
+        <div
+          class="absolute top-10 left-10 w-48 h-32 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-20"
+        >
+          <div class="w-1/2 h-3 bg-slate-100 rounded-full mb-4"></div>
+          <div class="space-y-2">
+            <div class="w-full h-2 bg-blue-50 rounded-full"></div>
+            <div class="w-4/5 h-2 bg-blue-50 rounded-full"></div>
+            <div class="w-full h-2 bg-blue-50 rounded-full"></div>
+          </div>
+        </div>
+        <div
+          class="absolute bottom-10 right-10 w-56 h-40 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl border border-blue-100/50 p-5 z-30"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <div
+              class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-brand-blue"
+            >
+              <i data-lucide="box" class="w-4 h-4"></i>
+            </div>
+            <span
+              class="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-md"
+              >LOD 300</span
+            >
+          </div>
+          <div
+            class="w-full h-16 bg-slate-50 rounded-lg border border-dashed border-slate-200 flex items-center justify-center"
+          >
+            <span class="text-xs text-slate-400">Rendering...</span>
+          </div>
+        </div>
+        <!-- Central Circle Element -->
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-[1px] border-dashed border-brand-blue/30 rounded-full flex items-center justify-center"
+        >
+          <div
+            class="w-48 h-48 border-[1px] border-brand-blue/20 rounded-full flex items-center justify-center"
+          >
+            <div
+              class="w-32 h-32 bg-gradient-to-tr from-brand-blue to-blue-400 rounded-full shadow-[0_0_40px_rgba(37,99,235,0.3)] opacity-90"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

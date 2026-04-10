@@ -1,0 +1,67 @@
+<script>if (window.location.pathname.includes('/pages/')) { window.location.replace('/pages/403.html'); }</script>
+<section id="katalog" class="py-20 px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal"
+          >
+            <div>
+              <span
+                class="text-brand-blue font-bold tracking-wider text-sm uppercase"
+                >Katalog</span
+              >
+              <h2
+                class="text-3xl md:text-4xl font-display font-bold text-brand-dark mt-2"
+              >
+                Layanan Kami.
+              </h2>
+            </div>
+
+            <!-- Modern Pill Filters -->
+            <div
+              class="flex overflow-x-auto no-scrollbar gap-2 pb-2 md:pb-0 w-full md:w-auto"
+            >
+              <button
+                class="filter-btn active px-6 py-2.5 rounded-full font-bold text-sm bg-brand-dark text-white shadow-md transition-all whitespace-nowrap"
+                data-filter="all"
+              >
+                Semua
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="dokumen"
+              >
+                Dokumen & Proposal
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="cad"
+              >
+                Drafting & BIM
+              </button>
+              <button
+                class="filter-btn px-6 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:border-slate-300 transition-all whitespace-nowrap"
+                data-filter="data"
+              >
+                Olah Data
+              </button>
+            </div>
+          </div>
+
+          <div id="servicesList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Services injected by JS -->
+          </div>
+
+          <div
+            id="emptyState"
+            class="hidden flex-col items-center justify-center py-20 text-center"
+          >
+            <i
+              data-lucide="folder-search"
+              class="w-16 h-16 text-slate-300 mb-4"
+            ></i>
+            <p class="font-medium text-slate-500">
+              Layanan tidak ditemukan untuk kategori ini.
+            </p>
+          </div>
+        </div>
+      </section>
